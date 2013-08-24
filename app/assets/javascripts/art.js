@@ -2,6 +2,20 @@
 
 var artSprite = {
 
+  "city.png":
+  {
+    "frame": {"x":154,"y":2,"w":100,"h":100},
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": {
+      "x":0,
+      "y":0,
+      "w":100,
+      "h":100
+    },
+    "sourceSize": {"w":100,"h":100}
+  }, 
+
   "cloud.png":
   {
     "frame": {"x":2,"y":2,"w":150,"h":150},
@@ -18,7 +32,7 @@ var artSprite = {
 
   "ship_fly_0000.png":
   {
-    "frame": {"x":154,"y":54,"w":50,"h":50},
+    "frame": {"x":54,"y":154,"w":50,"h":50},
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": {
@@ -32,7 +46,7 @@ var artSprite = {
 
   "ship_standby_0000.png":
   {
-    "frame": {"x":154,"y":2,"w":50,"h":50},
+    "frame": {"x":2,"y":154,"w":50,"h":50},
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": {

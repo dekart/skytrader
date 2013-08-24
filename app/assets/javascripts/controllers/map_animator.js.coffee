@@ -8,9 +8,11 @@ window.MapAnimator = class extends Animator
   constructor: (controller)->
     super(controller)
 
+    @city_layer = new PIXI.DisplayObjectContainer()
     @ship_layer = new PIXI.DisplayObjectContainer()
     @cloud_layer = new PIXI.DisplayObjectContainer()
 
+    @stage.addChild(@city_layer)
     @stage.addChild(@ship_layer)
     @stage.addChild(@cloud_layer)
 
@@ -38,10 +40,11 @@ window.MapAnimator = class extends Animator
 
     @ship_layer.addChild(@ship_sprite)
 
-    @cloud_sprites ?= []
-
     for cloud in @controller.clouds
       @cloud_layer.addChild(@.createCloudSprite(cloud))
+
+    for city in @controller.cities
+      @city_layer.addChild(@.createCitySprite(city))
 
 
   animate: =>
@@ -91,6 +94,9 @@ window.MapAnimator = class extends Animator
     for cloud_sprite in @cloud_layer.children
       cloud_sprite.position = @.viewportPosition(cloud_sprite.cloud)
 
+    for city_sprite in @city_layer.children
+      city_sprite.position = @.viewportPosition(city_sprite.city)
+
   viewportPosition: (object)->
     new PIXI.Point(object.x - @viewport.x, object.y - @viewport.y)
 
@@ -111,4 +117,12 @@ window.MapAnimator = class extends Animator
     sprite.position.y = cloud.y
     #sprite.blendMode = PIXI.blendModes.SCREEN
     sprite.cloud = cloud
+    sprite
+
+  createCitySprite: (city)->
+    sprite = PIXI.Sprite.fromFrame('city.png')
+    sprite.anchor = new PIXI.Point(0.5, 0.5)
+    sprite.position.x = city.x
+    sprite.position.y = city.y
+    sprite.city = city
     sprite

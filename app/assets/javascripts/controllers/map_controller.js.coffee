@@ -10,8 +10,13 @@ window.MapController = class extends BaseController
 
     @clouds = []
 
-    for i in [0..99]
+    for i in [1..100]
       @clouds.push Cloud.generate()
+
+    @cities = []
+
+    for i in [1..20]
+      @cities.push City.generate()
 
     @animator = new MapAnimator(@)
 
