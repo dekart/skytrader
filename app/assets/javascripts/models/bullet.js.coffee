@@ -3,8 +3,8 @@
 window.Bullet = class extends FlyingObject
   @include Spine.Events
 
-  maxSpeed: 10
-  lifetime: 500
+  maxSpeed: 6
+  lifetime: 1000
 
   constructor: (controller, x, y, to_x, to_y)->
     super(controller, x, y)
