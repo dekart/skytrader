@@ -31,6 +31,10 @@ window.Application = class
     $('#preloader').hide()
     $('#game_screen').css(visibility: 'visible')
 
+    @map = new MapController()
+
+    @map.show()
+
 $ =>
   window.preloader = new Preloader(=>
     window.application = new Application()

@@ -1,6 +1,6 @@
 var artSprite = {
 
-  "cat_0000.png":
+  "ship_fly_0000.png":
   {
     "frame": {"x":0,"y":0,"w":50,"h":50},
     "rotated": false,
@@ -14,7 +14,7 @@ var artSprite = {
     "sourceSize": {"w":50,"h":50}
   },
 
-  "fish_0000.png":
+  "ship_standby_0000.png":
   {
     "frame": {"x":0,"y":50,"w":50,"h":50},
     "rotated": false,
