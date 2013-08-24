@@ -28,6 +28,8 @@ window.MapController = class extends BaseController
 
     @animator = new MapAnimator(@)
 
+    @mouse_position = [@ship.x + 100, @ship.y]
+
 
   show: ->
     @.setupEventListeners()
@@ -79,16 +81,22 @@ window.MapController = class extends BaseController
 
     e.preventDefault() unless process_default?
 
-  onMouseDown: =>
+  onMouseDown: (e)=>
+    e.preventDefault()
+
     @ship.shooting = true
 
-  onMouseUp: =>
+  onMouseUp: (e)=>
+    e.preventDefault()
+
     @ship.shooting = false
 
   onMouseMove: (e)=>
+    e.preventDefault()
+
     @.updateEventOffsets(e)
 
-    @mouse_position = [e.offsetX + @animator.viewport.x, e.offsetY + @animator.viewport.y]
+    @mouse_position = [e.offsetX, e.offsetY]
 
   addBullet: (bullet)->
     @bullets.push(bullet)

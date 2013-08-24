@@ -4,7 +4,7 @@
 
 
 @function sprite_position_bullet(){
-  @return -104px -218px;
+  @return -104px -235px;
 }
 @mixin sprite_bullet($width: 5px, $height: 5px) {
   width: $width;
@@ -43,7 +43,7 @@
 }
 
 @function sprite_position_crystal(){
-  @return -104px -206px;
+  @return -104px -223px;
 }
 @mixin sprite_crystal($width: 10px, $height: 10px) {
   width: $width;
@@ -52,6 +52,19 @@
     repeat: no-repeat;
     image: sprite_image_url();
     position: sprite_position_crystal();
+  }
+}
+
+@function sprite_position_cursor(){
+  @return -104px -206px;
+}
+@mixin sprite_cursor($width: 15px, $height: 15px) {
+  width: $width;
+  height: $height;
+  background: {
+    repeat: no-repeat;
+    image: sprite_image_url();
+    position: sprite_position_cursor();
   }
 }
 

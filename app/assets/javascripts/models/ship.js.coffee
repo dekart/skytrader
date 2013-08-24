@@ -38,7 +38,10 @@ window.Ship = class extends FlyingObject
     @shot_at = Date.now()
 
     @controller.addBullet(
-      new Bullet(@, @x, @y, @controller.mouse_position[0], @controller.mouse_position[1])
+      new Bullet(@, @x, @y
+        @controller.mouse_position[0] + @controller.animator.viewport.x
+        @controller.mouse_position[1] + @controller.animator.viewport.y
+      )
     )
 
 

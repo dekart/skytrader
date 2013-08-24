@@ -57,8 +57,11 @@ window.MapAnimator = class extends Animator
     @fuel_progress.position = new PIXI.Point(canvasSize.width - 200, 10)
     @.updateFuelProgress()
 
+    @cursor = PIXI.Sprite.fromFrame('cursor.png')
+
     @interface_layer.addChild(@health_progress)
     @interface_layer.addChild(@fuel_progress)
+    @interface_layer.addChild(@cursor)
 
     @ship_sprite = @.createShipSprite('standby')
 
@@ -72,6 +75,8 @@ window.MapAnimator = class extends Animator
 
     for pirate in @controller.pirates
       @pirate_layer.addChild(@.createPirateSprite(pirate, 'standby'))
+
+    @sprites_added = true
 
   addBullet: (bullet)->
     @bullet_layer.addChild(@.createBulletSprite(bullet))
@@ -109,22 +114,23 @@ window.MapAnimator = class extends Animator
       @viewport.y = mapSize[1] - canvasSize.height
 
   updateSpriteStates: ->
-    if @ship_sprite
-      if (@controller.ship.speedX != 0 or @controller.ship.speedY != 0) and @ship_sprite.mode != 'fly'
-        @ship_layer.removeChild(@ship_sprite)
-        @ship_sprite = @.createShipSprite('fly')
-        @ship_layer.addChild(@ship_sprite)
-      else if (@controller.ship.speedX == 0 and @controller.ship.speedY == 0) and @ship_sprite.mode != 'standby'
-        @ship_layer.removeChild(@ship_sprite)
-        @ship_sprite = @.createShipSprite('standby')
-        @ship_layer.addChild(@ship_sprite)
+    return unless @sprites_added
 
-      if @controller.ship.direction == 'left'
-        @ship_sprite.scale.x = -1
-      else
-        @ship_sprite.scale.x = 1
+    if (@controller.ship.speedX != 0 or @controller.ship.speedY != 0) and @ship_sprite.mode != 'fly'
+      @ship_layer.removeChild(@ship_sprite)
+      @ship_sprite = @.createShipSprite('fly')
+      @ship_layer.addChild(@ship_sprite)
+    else if (@controller.ship.speedX == 0 and @controller.ship.speedY == 0) and @ship_sprite.mode != 'standby'
+      @ship_layer.removeChild(@ship_sprite)
+      @ship_sprite = @.createShipSprite('standby')
+      @ship_layer.addChild(@ship_sprite)
 
-      @.updateViewportPosition(@ship_sprite, @controller.ship)
+    if @controller.ship.direction == 'left'
+      @ship_sprite.scale.x = -1
+    else
+      @ship_sprite.scale.x = 1
+
+    @.updateViewportPosition(@ship_sprite, @controller.ship)
 
     for cloud_sprite in @cloud_layer.children
       @.updateViewportPosition(cloud_sprite, cloud_sprite.cloud)
@@ -153,12 +159,13 @@ window.MapAnimator = class extends Animator
       @.updateViewportPosition(bullet_sprite, bullet_sprite.bullet)
 
     @.updateFuelProgress()
+    @.updateCursorPosition()
 
   updateViewportPosition: (sprite, object)->
-    sprite.position = @.viewportPosition(object)
+    sprite.position = @.viewportPosition(object.x, object.y)
 
-  viewportPosition: (object)->
-    new PIXI.Point(object.x - @viewport.x, object.y - @viewport.y)
+  viewportPosition: (x, y)->
+    new PIXI.Point(x - @viewport.x, y - @viewport.y)
 
   updateHealthProgress: ->
     @health_progress.clear()
@@ -167,7 +174,7 @@ window.MapAnimator = class extends Animator
     @health_progress.endFill()
 
   updateFuelProgress: ->
-    return if not@fuel_progress? or @controller.ship.docked
+    return if @controller.ship.docked
 
     for i in [0 .. @controller.ship.fuel - 1]
       unless @fuel_progress.children[i]
@@ -178,9 +185,16 @@ window.MapAnimator = class extends Animator
     while @fuel_progress.children.length > @controller.ship.fuel
       @fuel_progress.removeChild(@fuel_progress.children[@fuel_progress.children.length - 1])
 
-    @fuel_progress.children[@fuel_progress.children.length - 1].scale = new PIXI.Point(
-      @controller.ship.fuelExhaustion(),
-      @controller.ship.fuelExhaustion()
+    if @fuel_progress.children.length > 0
+      @fuel_progress.children[@fuel_progress.children.length - 1].scale = new PIXI.Point(
+        @controller.ship.fuelExhaustion(),
+        @controller.ship.fuelExhaustion()
+      )
+
+  updateCursorPosition: ->
+    @cursor.position = @.viewportPosition(
+      @controller.mouse_position[0] + @viewport.x
+      @controller.mouse_position[1] + @viewport.y
     )
 
   createShipSprite: (mode)->

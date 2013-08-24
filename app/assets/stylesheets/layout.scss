@@ -44,6 +44,10 @@ body{
     color: #080808;
     background: #65cdff;
     position: relative;
+
+    canvas {
+      cursor: none;
+    }
   }
 }
 

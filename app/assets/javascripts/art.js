@@ -4,7 +4,7 @@ var artSprite = {
 
   "bullet.png":
   {
-    "frame": {"x":104,"y":218,"w":5,"h":5},
+    "frame": {"x":104,"y":235,"w":5,"h":5},
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": {
@@ -46,7 +46,7 @@ var artSprite = {
 
   "crystal.png":
   {
-    "frame": {"x":104,"y":206,"w":10,"h":10},
+    "frame": {"x":104,"y":223,"w":10,"h":10},
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": {
@@ -56,6 +56,20 @@ var artSprite = {
       "h":10
     },
     "sourceSize": {"w":10,"h":10}
+  }, 
+
+  "cursor.png":
+  {
+    "frame": {"x":104,"y":206,"w":15,"h":15},
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": {
+      "x":0,
+      "y":0,
+      "w":15,
+      "h":15
+    },
+    "sourceSize": {"w":15,"h":15}
   }, 
 
   "pirate_fly_0000.png":

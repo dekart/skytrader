@@ -39,6 +39,8 @@ window.Bullet = class extends FlyingObject
 
           @remove = true
 
+          break
+
     if Date.now() - @shot_at > @.lifetime
       @remove = true
 
