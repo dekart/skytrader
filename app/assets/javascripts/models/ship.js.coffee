@@ -35,6 +35,13 @@ window.Ship = class extends FlyingObject
   canDock: ->
     Math.abs(@speedX) < 0.3 and Math.abs(@speedY) < 0.3
 
+  dock: ->
+    @docked = true
+
+  undock: ->
+    @docked = false
+    @fuel_reduced_at = Date.now() # refuel ship
+
   totalCargo: ->
     total = 0
     total += amount for item, amount of @cargo

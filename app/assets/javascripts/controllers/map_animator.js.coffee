@@ -164,7 +164,7 @@ window.MapAnimator = class extends Animator
     @health_progress.endFill()
 
   updateFuelProgress: ->
-    return unless @fuel_progress
+    return if not@fuel_progress? or @controller.ship.docked
 
     for i in [0 .. @controller.ship.fuel - 1]
       unless @fuel_progress.children[i]

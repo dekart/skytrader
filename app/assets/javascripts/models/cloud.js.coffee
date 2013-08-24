@@ -10,5 +10,5 @@ window.Cloud = class
   constructor: (@controller, @x, @y, @size)->
 
   updateState: ->
-    @x -= 0.15 * @size
+    @x -= 0.20 * @size
     @x = mapSize[0] if @x < 0

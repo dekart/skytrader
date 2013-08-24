@@ -33,7 +33,7 @@ window.Pirate = class extends FlyingObject
       else
         @accelY = 0
 
-      @.shoot()
+      @.shoot() unless @controller.ship.docked
     else
       @accelX = 0
       @accelY = 0

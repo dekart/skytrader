@@ -10,7 +10,8 @@ window.CityController = class extends BaseController
 
     @overlay = $("<div class='dialog_overlay'></div>")
 
-  show: (@city, @ship)->
+  show: (@map, @city, @ship)->
+    @ship.dock()
     @city.shipDocks()
 
     @.setupEventListeners()
@@ -34,6 +35,8 @@ window.CityController = class extends BaseController
     @error?.detach()
 
     @visible = false
+
+    @map.ship.undock()
 
   render: ->
     @html(

@@ -58,7 +58,7 @@ window.MapController = class extends BaseController
       when 13
         if @ship.canDock()
           for city in @cities
-            CityController.show(city, @ship) if city.canDock()
+            CityController.show(@, city, @ship) if city.canDock()
       else
         process_default = true
 
