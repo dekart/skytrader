@@ -1,8 +1,3 @@
-window.canvasSize = {
-  width: 800
-  height: 550
-}
-
 window.Animator = class
   @getRenderer: ()->
     @renderer ?= PIXI.autoDetectRenderer(canvasSize.width, canvasSize.height, null, true)

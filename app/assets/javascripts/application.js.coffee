@@ -26,6 +26,13 @@
 
 #= require_self
 
+window.canvasSize = {
+  width: 800
+  height: 550
+}
+
+window.mapSize = [2000, 2000]
+
 window.Application = class
   start: ->
     $('#preloader').hide()

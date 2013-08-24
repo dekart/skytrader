@@ -3,8 +3,6 @@
 window.MapController = class extends BaseController
   className: 'map_screen'
 
-  map_size: [2000, 2000]
-
   constructor: ->
     super
 
@@ -13,7 +11,7 @@ window.MapController = class extends BaseController
     @clouds = []
 
     for i in [0..99]
-      @clouds.push Cloud.generate(@.map_size...)
+      @clouds.push Cloud.generate()
 
     @animator = new MapAnimator(@)
 

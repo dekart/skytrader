@@ -1,8 +1,8 @@
 window.Cloud = class
-  @generate: (map_width, map_height)->
+  @generate: ->
     new @(
-      Math.random() * map_width
-      Math.random() * map_height
+      Math.random() * mapSize[0]
+      Math.random() * mapSize[1]
       Math.random()
     )
 

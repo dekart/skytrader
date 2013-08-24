@@ -14,6 +14,8 @@ window.MapAnimator = class extends Animator
     @stage.addChild(@ship_layer)
     @stage.addChild(@cloud_layer)
 
+    @viewport = new PIXI.Point(0, 0)
+
 
   prepareTextures: ->
     for id, animation of @.loops
@@ -48,9 +50,25 @@ window.MapAnimator = class extends Animator
 
       @controller.updateState()
 
+      @.updateViewport()
       @.updateSpriteStates()
 
     super
+
+  updateViewport: ->
+    if @controller.ship.x > canvasSize.width / 2 and @controller.ship.x < mapSize[0] - canvasSize.width / 2
+      @viewport.x = @controller.ship.x - canvasSize.width / 2
+    else if @controller.ship.x <= canvasSize.width / 2
+      @viewport.x = 0
+    else
+      @viewport.x = mapSize[0] - canvasSize.width
+
+    if @controller.ship.y > canvasSize.height / 2 and @controller.ship.y < mapSize[1] - canvasSize.height / 2
+      @viewport.y = @controller.ship.y - canvasSize.height / 2
+    else if @controller.ship.y <= canvasSize.height / 2
+      @viewport.y = 0
+    else
+      @viewport.y = mapSize[1] - canvasSize.height
 
   updateSpriteStates: ->
     if @ship_sprite
@@ -68,8 +86,13 @@ window.MapAnimator = class extends Animator
       else
         @ship_sprite.scale.x = 1
 
-      @ship_sprite.position.x = @controller.ship.x
-      @ship_sprite.position.y = @controller.ship.y
+      @ship_sprite.position = @.viewportPosition(@controller.ship)
+
+    for cloud_sprite in @cloud_layer.children
+      cloud_sprite.position = @.viewportPosition(cloud_sprite.cloud)
+
+  viewportPosition: (object)->
+    new PIXI.Point(object.x - @viewport.x, object.y - @viewport.y)
 
   createShipSprite: (mode)->
     sprite = new PIXI.MovieClip(@.loops["ship_#{ mode }"].textures)
@@ -86,5 +109,6 @@ window.MapAnimator = class extends Animator
     sprite.scale.y = cloud.size * 0.9 + 0.3
     sprite.position.x = cloud.x
     sprite.position.y = cloud.y
-    sprite.blendMode = PIXI.blendModes.SCREEN
+    #sprite.blendMode = PIXI.blendModes.SCREEN
+    sprite.cloud = cloud
     sprite
