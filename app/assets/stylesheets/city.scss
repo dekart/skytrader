@@ -23,4 +23,15 @@
     cursor: pointer;
     border: none;
   }
+
+  .error {
+    position: absolute;
+    top: 0px;
+    left: 50px;
+    width: 460px;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: #f0f0f0;
+    text-align: center;
+    padding: 5px 0;
+  }
 }

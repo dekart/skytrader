@@ -31,12 +31,21 @@ window.CityController = class extends BaseController
     @overlay.detach()
     @el.detach()
 
+    @error?.detach()
+
     @visible = false
 
   render: ->
     @html(
       @.renderTemplate('city')
     )
+
+  renderError: (text)->
+    @error ?= $("<div class='error'></div>")
+
+    @error.html(text).css(opacity: 1).appendTo(@el)
+
+    @error.stop(true).delay(1000).fadeTo(400, 0, ()=> @error.detach())
 
   setupEventListeners: ->
     @el.on('click', '.close', @.onCloseClick)
@@ -54,11 +63,19 @@ window.CityController = class extends BaseController
   onBuyClick: (e)=>
     type = $(e.currentTarget).data('type')
 
-    if @ship.buyCargo(type, @city) == true
+    result = @ship.buyCargo(type, @city)
+
+    if result == true
       @.render()
+    else
+      @.renderError(I18n.t("game.city.errors.#{ result }"))
 
   onSellClick: (e)=>
     type = $(e.currentTarget).data('type')
 
-    if @ship.sellCargo(type, @city) == true
+    result = @ship.sellCargo(type, @city)
+
+    if result == true
       @.render()
+    else
+      @.renderError(I18n.t("game.city.errors.#{ result }"))

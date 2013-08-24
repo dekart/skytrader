@@ -30,6 +30,7 @@
   </table>
 
   Your money: <%= @ship.money %>
+  Cargo: <%= @ship.totalCargo() %> of <%= @ship.maxCargo %>
 </div>
 
 <button class="close"></button>

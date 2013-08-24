@@ -1,5 +1,6 @@
 window.Ship = class
   maxSpeed: 4
+  maxCargo: 10
 
   constructor: ->
     @x = 100
@@ -43,8 +44,17 @@ window.Ship = class
   canDock: ->
     Math.abs(@speedX) < 0.3 and Math.abs(@speedY) < 0.3
 
+  totalCargo: ->
+    total = 0
+    total += amount for item, amount of @cargo
+    total
+
   buyCargo: (type, city)->
-    if @money >= city.prices[type]
+    if @.totalCargo() >= @.maxCargo
+      'not_enough_space'
+    else if @money < city.prices[type]
+      'not_enough_money'
+    else
       @money -= city.prices[type]
 
       @cargo[type] ?= 0
@@ -53,11 +63,11 @@ window.Ship = class
       city.stock[type] -= 1
 
       true
-    else
-      'not_enough_money'
 
   sellCargo: (type, city)->
-    if @cargo[type] > 0
+    if @cargo[type] <= 0
+      'not_enough_cargo'
+    else
       @money += city.prices[type]
 
       @cargo[type] -= 1
@@ -65,5 +75,3 @@ window.Ship = class
       city.stock[type] += 1
 
       true
-    else
-      'not_enough_cargo'

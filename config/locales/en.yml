@@ -23,3 +23,9 @@ en:
   game:
     name: "My Game"
     description: "My super game made for fun and profit"
+
+    city:
+      errors:
+        not_enough_money: "You don't have enough money"
+        not_enough_space: "Your cargo bay is full"
+        not_enough_cargo: "You're out of cargo"
