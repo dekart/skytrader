@@ -4,8 +4,8 @@ window.Ship = class extends FlyingObject
   maxSpeed: 4
   maxCargo: 10
 
-  constructor: ->
-    super(100, 100)
+  constructor: (controller)->
+    super(controller, 100, 100)
 
     @money = 200
     @cargo = {}

@@ -6,25 +6,26 @@ window.MapController = class extends BaseController
   constructor: ->
     super
 
-    @ship = new Ship()
+    @ship = new Ship(@)
 
     @clouds = []
 
     for i in [1..100]
-      @clouds.push Cloud.generate()
+      @clouds.push Cloud.generate(@)
 
     @cities = []
 
     for i in [1..20]
-      @cities.push City.generate()
-
-    @animator = new MapAnimator(@)
-
+      @cities.push City.generate(@)
 
     @pirates = []
 
     for i in [1..50]
-      @pirates.push Pirate.generate()
+      @pirates.push Pirate.generate(@)
+
+    @bullets = []
+
+    @animator = new MapAnimator(@)
 
 
   show: ->
@@ -56,7 +57,7 @@ window.MapController = class extends BaseController
       when 13
         if @ship.canDock()
           for city in @cities
-            CityController.show(city, @ship) if city.canDock(@ship)
+            CityController.show(city, @ship) if city.canDock()
       else
         process_default = true
 
@@ -73,9 +74,27 @@ window.MapController = class extends BaseController
 
     e.preventDefault() unless process_default?
 
+  addBullet: (bullet)->
+    @bullets.push(bullet)
+
+    @animator.addBullet(bullet)
+
+  removeBullet: (bullet)=>
+    new_bullets = []
+
+    for b in @bullets
+      new_bullets.push(b) if b != bullet
+
+    @bullets = new_bullets
+
+    @animator.removeBullet(bullet)
+
   updateState: ->
     @ship.updateState()
 
     cloud.updateState() for cloud in @clouds
 
-    pirate.updateState(@ship) for pirate in @pirates
+    pirate.updateState() for pirate in @pirates
+
+    bullet.updateState() for bullet in @bullets
+    @.removeBullet(bullet) for bullet in _.select(@bullets, (b)-> b.remove == true )

@@ -1,12 +1,13 @@
 window.Cloud = class
-  @generate: ->
+  @generate: (controller)->
     new @(
+      controller
       Math.random() * mapSize[0]
       Math.random() * mapSize[1]
       Math.random()
     )
 
-  constructor: (@x, @y, @size)->
+  constructor: (@controller, @x, @y, @size)->
 
   updateState: ->
     @x -= 0.15 * @size

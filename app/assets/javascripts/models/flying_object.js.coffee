@@ -1,17 +1,25 @@
-window.FlyingObject = class
-  constructor: (@x, @y)->
+window.FlyingObject = class extends Spine.Class
+  constructor: (@controller, @x, @y)->
     @accelX = 0
     @accelY = 0
     @speedX = 0
     @speedY = 0
     @direction = 'right'
 
+    @id = _.random(0, 1000000000)
+
   updateState: ->
+    @.updateDirection()
+    @.updateSpeed()
+    @.updatePosition()
+
+  updateDirection: ->
     if @accelX < 0
       @direction = 'left'
     else if @accelX > 0
       @direction = 'right'
 
+  updateSpeed: ->
     if @accelX != 0 and (Math.abs(@speedX) < @.maxSpeed or Math.abs(@speedX) / @speedX != @accelX)
       @speedX += 0.1 * @accelX
     else if @accelX == 0 and Math.abs(@speedX) > 0
@@ -24,6 +32,7 @@ window.FlyingObject = class
       @speedY -= 0.07 * Math.abs(@speedY) / @speedY
       @speedY = 0 if Math.abs(@speedY) < 0.1
 
+  updatePosition: ->
     @x += @speedX
     @y += @speedY
 

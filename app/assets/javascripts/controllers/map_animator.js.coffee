@@ -15,12 +15,14 @@ window.MapAnimator = class extends Animator
     @ship_layer = new PIXI.DisplayObjectContainer()
     @cloud_layer = new PIXI.DisplayObjectContainer()
     @pirate_layer = new PIXI.DisplayObjectContainer()
+    @bullet_layer = new PIXI.DisplayObjectContainer()
 
     @stage.addChild(@background_layer)
     @stage.addChild(@city_layer)
     @stage.addChild(@ship_layer)
     @stage.addChild(@cloud_layer)
     @stage.addChild(@pirate_layer)
+    @stage.addChild(@bullet_layer)
 
     @viewport = new PIXI.Point(0, 0)
 
@@ -58,6 +60,11 @@ window.MapAnimator = class extends Animator
     for pirate in @controller.pirates
       @pirate_layer.addChild(@.createPirateSprite(pirate, 'standby'))
 
+  addBullet: (bullet)->
+    @bullet_layer.addChild(@.createBulletSprite(bullet))
+
+  removeBullet: (bullet)->
+    @bullet_layer.removeChild(_.find(@bullet_layer.children, (c)=> c.bullet.id == bullet.id))
 
   animate: =>
     unless @paused_at
@@ -126,6 +133,9 @@ window.MapAnimator = class extends Animator
 
       @.updateViewportPosition(pirate_sprite, pirate_sprite.pirate)
 
+    for bullet_sprite in @bullet_layer.children
+      @.updateViewportPosition(bullet_sprite, bullet_sprite.bullet)
+
   updateViewportPosition: (sprite, object)->
     sprite.position = @.viewportPosition(object)
 
@@ -168,4 +178,12 @@ window.MapAnimator = class extends Animator
     sprite.position.x = pirate.x
     sprite.position.y = pirate.y
     sprite.pirate = pirate
+    sprite
+
+  createBulletSprite: (bullet)->
+    sprite = PIXI.Sprite.fromFrame('bullet.png')
+    sprite.anchor = new PIXI.Point(0.5, 0.5)
+    sprite.position.x = bullet.x
+    sprite.position.y = bullet.y
+    sprite.bullet = bullet
     sprite

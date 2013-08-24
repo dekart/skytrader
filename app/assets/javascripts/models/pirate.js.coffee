@@ -1,33 +1,48 @@
 #= require ./flying_object
 
 window.Pirate = class extends FlyingObject
-  @generate: ->
+  @include Spine.Events
+
+  @generate: (controller)->
     new @(
+      controller
       _.random(canvasSize.width, mapSize[0])
       _.random(canvasSize.height, mapSize[1])
     )
 
   maxSpeed: 3.5
   detectionDistance: 200
+  roundsPerSecond: 2
 
-  constructor: (@x, @y)->
-    super(@x, @y)
+  constructor: (controller, x, y)->
+    super(controller, x, y)
 
     @direction = _.shuffle(['right', 'left'])[0]
 
-  updateState: (ship)->
-    if Math.sqrt(Math.pow(Math.abs(@x - ship.x), 2) + Math.pow(Math.abs(@y - ship.y), 2)) < @.detectionDistance
-      if ship.x - @x != 0
-        @accelX = (ship.x - @x) / Math.abs(ship.x - @x)
+  updateState: ->
+    distance = Math.sqrt(Math.pow(Math.abs(@x - @controller.ship.x), 2) + Math.pow(Math.abs(@y - @controller.ship.y), 2))
+
+    if distance < @.detectionDistance
+      if @controller.ship.x - @x != 0
+        @accelX = (@controller.ship.x - @x) / Math.abs(@controller.ship.x - @x)
       else
         @accelX = 0
 
-      if ship.y - @y != 0
-        @accelY = (ship.y - @y) / Math.abs(ship.y - @y)
+      if @controller.ship.y - @y != 0
+        @accelY = (@controller.ship.y - @y) / Math.abs(@controller.ship.y - @y)
       else
         @accelY = 0
+
+      @.shoot()
     else
       @accelX = 0
       @accelY = 0
 
     super
+
+  shoot: ->
+    return if @shot_at and Date.now() - @shot_at < 1000 / @.roundsPerSecond
+
+    @shot_at = Date.now()
+
+    @controller.addBullet(new Bullet(@controller, @x, @y, @controller.ship.x, @controller.ship.y))

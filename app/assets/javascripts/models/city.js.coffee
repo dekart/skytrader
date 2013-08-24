@@ -1,17 +1,18 @@
 window.City = class
-  @generate: ->
+  @generate: (controller)->
     new @(
+      controller
       Math.ceil(Math.random() * mapSize[0] / 200) * 200
       Math.ceil(Math.random() * mapSize[1] / 200) * 200
       _.shuffle(['agro', 'industry', 'culture'])[0]
     )
 
-  constructor: (@x, @y, @type)->
+  constructor: (@controller, @x, @y, @type)->
     @prices = {}
     @stock = {}
 
-  canDock: (ship)->
-    @x - 50 < ship.x < @x + 50 and @y - 50 < ship.y < @y + 50
+  canDock: ->
+    @x - 50 < @controller.ship.x < @x + 50 and @y - 50 < @controller.ship.y < @y + 50
 
   shipDocks: ->
     @.generatePrices()

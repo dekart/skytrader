@@ -2,6 +2,20 @@
 
 var artSprite = {
 
+  "bullet.png":
+  {
+    "frame": {"x":154,"y":104,"w":5,"h":5},
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": {
+      "x":0,
+      "y":0,
+      "w":5,
+      "h":5
+    },
+    "sourceSize": {"w":5,"h":5}
+  }, 
+
   "city.png":
   {
     "frame": {"x":154,"y":2,"w":100,"h":100},
@@ -32,7 +46,7 @@ var artSprite = {
 
   "pirate_fly_0000.png":
   {
-    "frame": {"x":158,"y":104,"w":50,"h":50},
+    "frame": {"x":158,"y":111,"w":50,"h":50},
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": {
