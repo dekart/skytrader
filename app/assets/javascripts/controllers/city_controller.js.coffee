@@ -55,13 +55,21 @@ window.CityController = class extends BaseController
     @el.on('click', '.buy', @.onBuyClick)
     @el.on('click', '.sell', @.onSellClick)
 
+    $(document).on('keydown', @.onKeyDown)
+
   unbindEventListeners: ->
     @el.off('click', '.close', @.onCloseClick)
     @el.off('click', '.buy', @.onBuyClick)
     @el.off('click', '.sell', @.onSellClick)
 
+    $(document).off('keydown', @.onKeyDown)
+
   onCloseClick: =>
     @.close()
+
+  onKeyDown: (e)=>
+    console.log(e)
+    @.close() if e.keyCode == 27
 
   onBuyClick: (e)=>
     type = $(e.currentTarget).data('type')

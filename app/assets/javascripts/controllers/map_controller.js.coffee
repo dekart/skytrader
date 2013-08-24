@@ -39,7 +39,7 @@ window.MapController = class extends BaseController
     $(document).on('keyup', @.onKeyUp)
 
     @el.on('mousedown', 'canvas', @.onMouseDown)
-    @el.on('mouseup', 'canvas', @.onMouseUp)
+    @el.on('mouseup',   'canvas', @.onMouseUp)
     @el.on('mousemove', 'canvas', @.onMouseMove)
 
   render: ->
@@ -60,7 +60,7 @@ window.MapController = class extends BaseController
       when 40, 83 # down
         @ship.accelY = 1
       when 13
-        if @ship.canDock()
+        if @ship.canDock() and not CityController.controller?.visible
           for city in @cities
             CityController.show(@, city, @ship) if city.canDock()
       else
