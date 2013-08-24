@@ -27,10 +27,8 @@ window.MapController = class extends BaseController
     @.render()
 
   setupEventListeners: ->
-    $(document).on('keydown', @.onClientKeyDown)
-    $(document).on('keyup', @.onClientKeyUp)
-
-    $(document).focus()
+    $(document).on('keydown', @.onKeyDown)
+    $(document).on('keyup', @.onKeyUp)
 
   render: ->
     @animator.deactivate()
@@ -39,7 +37,7 @@ window.MapController = class extends BaseController
 
     @animator.activate()
 
-  onClientKeyDown: (e)=>
+  onKeyDown: (e)=>
     switch e.keyCode
       when 37, 65 # left
         @ship.accelX = -1
@@ -49,12 +47,16 @@ window.MapController = class extends BaseController
         @ship.accelX = 1
       when 40, 83 # down
         @ship.accelY = 1
+      when 13
+        if @ship.isStopped()
+          for city in @cities
+            CityController.show(city) if city.canDock(@ship)
       else
         process_default = true
 
     e.preventDefault() unless process_default?
 
-  onClientKeyUp: (e)=>
+  onKeyUp: (e)=>
     switch e.keyCode
       when 37, 39, 65, 68 #left, right
         @ship.accelX = 0

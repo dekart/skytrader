@@ -6,3 +6,6 @@ window.City = class
     )
 
   constructor: (@x, @y)->
+
+  canDock: (ship)->
+    @x - 50 < ship.x < @x + 50 and @y - 50 < ship.y < @y + 50

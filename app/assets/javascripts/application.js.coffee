@@ -31,7 +31,7 @@ window.canvasSize = {
   height: 550
 }
 
-window.mapSize = [2000, 2000]
+window.mapSize = [3000, 3000]
 
 window.Application = class
   start: ->

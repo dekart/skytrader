@@ -1,4 +1,6 @@
 window.Ship = class
+  maxSpeed: 4
+
   constructor: (@x, @y)->
     @accelX = 0
     @accelY = 0
@@ -12,13 +14,13 @@ window.Ship = class
     else if @accelX > 0
       @direction = 'right'
 
-    if @accelX != 0 and Math.abs(@speedX) < 2
+    if @accelX != 0 and Math.abs(@speedX) < @.maxSpeed
       @speedX += 0.1 * @accelX
     else if @accelX == 0 and Math.abs(@speedX) > 0
       @speedX -= 0.07 * Math.abs(@speedX) / @speedX
       @speedX = 0 if Math.abs(@speedX) < 0.1
 
-    if @accelY != 0 and Math.abs(@speedY) < 2
+    if @accelY != 0 and Math.abs(@speedY) < @.maxSpeed
       @speedY += 0.1 * @accelY
     else if @accelY == 0 and Math.abs(@speedY) > 0
       @speedY -= 0.07 * Math.abs(@speedY) / @speedY
@@ -26,3 +28,12 @@ window.Ship = class
 
     @x += @speedX
     @y += @speedY
+
+    @x = 0 if @x < 0
+    @x = mapSize[0] if @x > mapSize[0]
+
+    @y = 0 if @y < 0
+    @y = mapSize[0] if @y > mapSize[0]
+
+  isStopped: ->
+    @speedX == 0 and @speedY == 0

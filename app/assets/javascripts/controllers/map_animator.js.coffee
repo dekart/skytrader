@@ -89,13 +89,16 @@ window.MapAnimator = class extends Animator
       else
         @ship_sprite.scale.x = 1
 
-      @ship_sprite.position = @.viewportPosition(@controller.ship)
+      @.updateViewportPosition(@ship_sprite, @controller.ship)
 
     for cloud_sprite in @cloud_layer.children
-      cloud_sprite.position = @.viewportPosition(cloud_sprite.cloud)
+      @.updateViewportPosition(cloud_sprite, cloud_sprite.cloud)
 
     for city_sprite in @city_layer.children
-      city_sprite.position = @.viewportPosition(city_sprite.city)
+      @.updateViewportPosition(city_sprite, city_sprite.city)
+
+  updateViewportPosition: (sprite, object)->
+    sprite.position = @.viewportPosition(object)
 
   viewportPosition: (object)->
     new PIXI.Point(object.x - @viewport.x, object.y - @viewport.y)
