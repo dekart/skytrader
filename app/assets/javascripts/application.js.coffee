@@ -105,6 +105,9 @@ window.stockAmountRanges = {
   }
 }
 
+Math.hypo = (a, b)->
+  Math.sqrt(a * a + b * b)
+
 window.Application = class
   start: ->
     $('#preloader').hide()

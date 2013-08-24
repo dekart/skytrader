@@ -5,6 +5,7 @@ window.Bullet = class extends FlyingObject
 
   maxSpeed: 6
   lifetime: 1000
+  damage: 1
 
   constructor: (controller, x, y, to_x, to_y)->
     super(controller, x, y)
@@ -26,6 +27,11 @@ window.Bullet = class extends FlyingObject
   updateState: ->
     @.updateDirection()
     @.updatePosition()
+
+    if Math.hypo(@controller.ship.x - @x, @controller.ship.y - @y) < 20
+      @controller.ship.getHit(@)
+
+      @remove = true
 
     if Date.now() - @shot_at > @.lifetime
       @remove = true

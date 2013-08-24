@@ -16,6 +16,7 @@ window.MapAnimator = class extends Animator
     @cloud_layer = new PIXI.DisplayObjectContainer()
     @pirate_layer = new PIXI.DisplayObjectContainer()
     @bullet_layer = new PIXI.DisplayObjectContainer()
+    @interface_layer = new PIXI.DisplayObjectContainer()
 
     @stage.addChild(@background_layer)
     @stage.addChild(@city_layer)
@@ -23,6 +24,7 @@ window.MapAnimator = class extends Animator
     @stage.addChild(@cloud_layer)
     @stage.addChild(@pirate_layer)
     @stage.addChild(@bullet_layer)
+    @stage.addChild(@interface_layer)
 
     @viewport = new PIXI.Point(0, 0)
 
@@ -46,6 +48,12 @@ window.MapAnimator = class extends Animator
   addSprites: ->
     @background_sprite = PIXI.Sprite.fromImage('$assetPath(sky.jpg)')
     @background_layer.addChild(@background_sprite)
+
+    @health_progress = new PIXI.Graphics()
+    @health_progress.position = new PIXI.Point(canvasSize.width - 110, 10)
+    @.updateHealthProgress()
+
+    @interface_layer.addChild(@health_progress)
 
     @ship_sprite = @.createShipSprite('standby')
 
@@ -141,6 +149,13 @@ window.MapAnimator = class extends Animator
 
   viewportPosition: (object)->
     new PIXI.Point(object.x - @viewport.x, object.y - @viewport.y)
+
+  updateHealthProgress: ->
+    @health_progress.clear()
+    @health_progress.beginFill(0xdd0000, 1)
+    @health_progress.drawRect(0, 0, 100 * @controller.ship.healthPercent(), 10)
+    @health_progress.endFill()
+
 
   createShipSprite: (mode)->
     sprite = new PIXI.MovieClip(@.loops["ship_#{ mode }"].textures)

@@ -20,7 +20,7 @@ window.FlyingObject = class extends Spine.Class
       @direction = 'right'
 
   totalSpeed: ->
-    Math.sqrt(Math.pow(@speedX, 2) + Math.pow(@speedY, 2))
+    Math.hypo(@speedX, @speedY)
 
   updateSpeed: ->
     if @accelX != 0 and (Math.abs(@speedY) < @.maxSpeed or Math.abs(@speedX) / @speedX != @accelX)

@@ -20,7 +20,7 @@ window.Pirate = class extends FlyingObject
     @direction = _.shuffle(['right', 'left'])[0]
 
   updateState: ->
-    distance = Math.sqrt(Math.pow(Math.abs(@x - @controller.ship.x), 2) + Math.pow(Math.abs(@y - @controller.ship.y), 2))
+    distance = Math.hypo(@x - @controller.ship.x, @y - @controller.ship.y)
 
     if distance < @.detectionDistance
       if @controller.ship.x - @x != 0

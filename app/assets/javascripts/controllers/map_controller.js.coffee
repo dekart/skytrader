@@ -1,4 +1,5 @@
 #= require ./map_animator
+#= require ./death_screen_controller
 
 window.MapController = class extends BaseController
   className: 'map_screen'
@@ -98,3 +99,8 @@ window.MapController = class extends BaseController
 
     bullet.updateState() for bullet in @bullets
     @.removeBullet(bullet) for bullet in _.select(@bullets, (b)-> b.remove == true )
+
+  death: ->
+    @animator.deactivate()
+
+    DeathScreenController.show()

@@ -3,11 +3,13 @@
 window.Ship = class extends FlyingObject
   maxSpeed: 4
   maxCargo: 10
+  maxHealth: 100
 
   constructor: (controller)->
     super(controller, 100, 100)
 
     @money = 200
+    @health = @.maxHealth
     @cargo = {}
 
   updateState: ->
@@ -47,3 +49,14 @@ window.Ship = class extends FlyingObject
       city.stock[type] += 1
 
       true
+
+  getHit: (bullet)->
+    @health -= bullet.damage
+
+    @controller.animator.updateHealthProgress()
+
+    if @health <= 0
+      @controller.death()
+
+  healthPercent: ->
+    @health / @.maxHealth
