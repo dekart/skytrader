@@ -6,6 +6,8 @@ window.Ship = class extends FlyingObject
   maxHealth: 100
   maxFuel: 5
 
+  roundsPerSecond: 2
+
   constructor: (controller)->
     super(controller, 100, 100)
 
@@ -20,6 +22,7 @@ window.Ship = class extends FlyingObject
     super
 
     @.updateFuel()
+    @.shoot() if @shooting
 
   updateFuel: ->
     if Date.now() - @fuel_reduced_at > tenSeconds # 10 seconds!!!
@@ -28,6 +31,16 @@ window.Ship = class extends FlyingObject
 
       if @fuel == 0
         @controller.death()
+
+  shoot: ->
+    return if @shot_at and Date.now() - @shot_at < 1000 / @.roundsPerSecond
+
+    @shot_at = Date.now()
+
+    @controller.addBullet(
+      new Bullet(@controller, @x, @y, @controller.mouse_position[0], @controller.mouse_position[1])
+    )
+
 
   fuelExhaustion: ->
     1 - (Date.now() - @fuel_reduced_at) / tenSeconds

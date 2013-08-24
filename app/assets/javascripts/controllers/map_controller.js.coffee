@@ -38,6 +38,10 @@ window.MapController = class extends BaseController
     $(document).on('keydown', @.onKeyDown)
     $(document).on('keyup', @.onKeyUp)
 
+    @el.on('mousedown', 'canvas', @.onMouseDown)
+    @el.on('mouseup', 'canvas', @.onMouseUp)
+    @el.on('mousemove', 'canvas', @.onMouseMove)
+
   render: ->
     @animator.deactivate()
 
@@ -75,6 +79,17 @@ window.MapController = class extends BaseController
 
     e.preventDefault() unless process_default?
 
+  onMouseDown: =>
+    @ship.shooting = true
+
+  onMouseUp: =>
+    @ship.shooting = false
+
+  onMouseMove: (e)=>
+    @.updateEventOffsets(e)
+
+    @mouse_position = [e.offsetX + @animator.viewport.x, e.offsetY + @animator.viewport.y]
+
   addBullet: (bullet)->
     @bullets.push(bullet)
 
@@ -98,6 +113,7 @@ window.MapController = class extends BaseController
     pirate.updateState() for pirate in @pirates
 
     bullet.updateState() for bullet in @bullets
+
     @.removeBullet(bullet) for bullet in _.select(@bullets, (b)-> b.remove == true )
 
   death: ->

@@ -23,15 +23,19 @@ window.Bullet = class extends FlyingObject
 
     @shot_at = Date.now()
 
+    if @x == @controller.ship.x and @y == @controller.ship.y
+      @friendly = true
+
 
   updateState: ->
     @.updateDirection()
     @.updatePosition()
 
     if Math.hypo(@controller.ship.x - @x, @controller.ship.y - @y) < 20
-      @controller.ship.getHit(@)
+      if not @friendly or Date.now() - @shot_at > @.lifetime / 2
+        @controller.ship.getHit(@)
 
-      @remove = true
+        @remove = true
 
     if Date.now() - @shot_at > @.lifetime
       @remove = true
