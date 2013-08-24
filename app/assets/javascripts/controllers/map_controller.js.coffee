@@ -30,15 +30,15 @@ window.MapController = class extends BaseController
 
   onClientKeyDown: (e)=>
     switch e.keyCode
-      when 37 #left
+      when 37, 65 # left
         @ship.speedX = -2
         @ship.direction = 'left'
-      when 38 # Arrow up
+      when 38, 87 # up
         @ship.speedY = -2
-      when 39 #right
+      when 39, 68 #right
         @ship.speedX = 2
         @ship.direction = 'right'
-      when 40 # down
+      when 40, 83 # down
         @ship.speedY = 2
       else
         process_default = true
@@ -47,9 +47,9 @@ window.MapController = class extends BaseController
 
   onClientKeyUp: (e)=>
     switch e.keyCode
-      when 37, 39 #left, right
+      when 37, 39, 65, 68 #left, right
         @ship.speedX = 0
-      when 38, 40 # up, down
+      when 38, 40, 87, 83 # up, down
         @ship.speedY = 0
       else
         process_default = true
