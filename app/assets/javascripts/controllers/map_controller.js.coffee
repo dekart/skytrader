@@ -6,7 +6,7 @@ window.MapController = class extends BaseController
   constructor: ->
     super
 
-    @ship = new Ship(0, 0)
+    @ship = new Ship(100, 100)
 
     @animator = new MapAnimator(@)
 
