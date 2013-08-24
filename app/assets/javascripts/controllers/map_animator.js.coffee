@@ -53,7 +53,12 @@ window.MapAnimator = class extends Animator
     @health_progress.position = new PIXI.Point(canvasSize.width - 110, 10)
     @.updateHealthProgress()
 
+    @fuel_progress = new PIXI.DisplayObjectContainer()
+    @fuel_progress.position = new PIXI.Point(canvasSize.width - 200, 10)
+    @.updateFuelProgress()
+
     @interface_layer.addChild(@health_progress)
+    @interface_layer.addChild(@fuel_progress)
 
     @ship_sprite = @.createShipSprite('standby')
 
@@ -144,6 +149,8 @@ window.MapAnimator = class extends Animator
     for bullet_sprite in @bullet_layer.children
       @.updateViewportPosition(bullet_sprite, bullet_sprite.bullet)
 
+    @.updateFuelProgress()
+
   updateViewportPosition: (sprite, object)->
     sprite.position = @.viewportPosition(object)
 
@@ -156,6 +163,22 @@ window.MapAnimator = class extends Animator
     @health_progress.drawRect(0, 0, 100 * @controller.ship.healthPercent(), 10)
     @health_progress.endFill()
 
+  updateFuelProgress: ->
+    return unless @fuel_progress
+
+    for i in [0 .. @controller.ship.fuel - 1]
+      unless @fuel_progress.children[i]
+        crystal = PIXI.Sprite.fromFrame('crystal.png')
+        crystal.position.x = i * (crystal.width + 2)
+        @fuel_progress.addChild(crystal)
+
+    while @fuel_progress.children.length > @controller.ship.fuel
+      @fuel_progress.removeChild(@fuel_progress.children[@fuel_progress.children.length - 1])
+
+    @fuel_progress.children[@fuel_progress.children.length - 1].scale = new PIXI.Point(
+      @controller.ship.fuelExhaustion(),
+      @controller.ship.fuelExhaustion()
+    )
 
   createShipSprite: (mode)->
     sprite = new PIXI.MovieClip(@.loops["ship_#{ mode }"].textures)

@@ -26,6 +26,8 @@
 
 #= require_self
 
+window.tenSeconds = 10 * 1000
+
 window.canvasSize = {
   width: 800
   height: 550

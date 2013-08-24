@@ -4,16 +4,33 @@ window.Ship = class extends FlyingObject
   maxSpeed: 4
   maxCargo: 10
   maxHealth: 100
+  maxFuel: 5
 
   constructor: (controller)->
     super(controller, 100, 100)
 
-    @money = 200
     @health = @.maxHealth
+    @fuel = @.maxFuel
+    @fuel_reduced_at = Date.now()
+
+    @money = 200
     @cargo = {}
 
   updateState: ->
     super
+
+    @.updateFuel()
+
+  updateFuel: ->
+    if Date.now() - @fuel_reduced_at > tenSeconds # 10 seconds!!!
+      @fuel_reduced_at = Date.now()
+      @fuel -= 1
+
+      if @fuel == 0
+        @controller.death()
+
+  fuelExhaustion: ->
+    1 - (Date.now() - @fuel_reduced_at) / tenSeconds
 
   canDock: ->
     Math.abs(@speedX) < 0.3 and Math.abs(@speedY) < 0.3
