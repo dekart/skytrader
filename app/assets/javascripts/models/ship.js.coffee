@@ -1,4 +1,4 @@
-class Ship
+window.Ship = class
   constructor: (@x, @y)->
     @accelX = 0
     @accelY = 0
@@ -26,5 +26,3 @@ class Ship
 
     @x += @speedX
     @y += @speedY
-
-window.Ship = Ship

@@ -1,5 +1,5 @@
 window.canvasSize = {
-  width: 760
+  width: 800
   height: 550
 }
 

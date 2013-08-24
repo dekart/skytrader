@@ -3,12 +3,20 @@
 window.MapController = class extends BaseController
   className: 'map_screen'
 
+  map_size: [2000, 2000]
+
   constructor: ->
     super
 
     @ship = new Ship(100, 100)
 
+    @clouds = []
+
+    for i in [0..99]
+      @clouds.push Cloud.generate(@.map_size...)
+
     @animator = new MapAnimator(@)
+
 
   show: ->
     @.setupEventListeners()

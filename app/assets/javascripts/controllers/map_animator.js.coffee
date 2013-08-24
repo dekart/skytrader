@@ -9,8 +9,10 @@ window.MapAnimator = class extends Animator
     super(controller)
 
     @ship_layer = new PIXI.DisplayObjectContainer()
+    @cloud_layer = new PIXI.DisplayObjectContainer()
 
     @stage.addChild(@ship_layer)
+    @stage.addChild(@cloud_layer)
 
 
   prepareTextures: ->
@@ -33,6 +35,12 @@ window.MapAnimator = class extends Animator
     @ship_sprite = @.createShipSprite('standby')
 
     @ship_layer.addChild(@ship_sprite)
+
+    @cloud_sprites ?= []
+
+    for cloud in @controller.clouds
+      @cloud_layer.addChild(@.createCloudSprite(cloud))
+
 
   animate: =>
     unless @paused_at
@@ -69,4 +77,14 @@ window.MapAnimator = class extends Animator
     sprite.anchor = new PIXI.Point(0.5, 0.5)
     sprite.animationSpeed = @.loops["ship_#{ mode }"].speed
     sprite.play()
+    sprite
+
+  createCloudSprite: (cloud)->
+    sprite = PIXI.Sprite.fromFrame('cloud.png')
+    sprite.anchor = new PIXI.Point(0.5, 0.5)
+    sprite.scale.x = cloud.size * 0.9 + 0.3
+    sprite.scale.y = cloud.size * 0.9 + 0.3
+    sprite.position.x = cloud.x
+    sprite.position.y = cloud.y
+    sprite.blendMode = PIXI.blendModes.SCREEN
     sprite
