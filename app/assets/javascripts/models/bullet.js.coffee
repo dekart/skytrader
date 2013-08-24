@@ -28,13 +28,17 @@ window.Bullet = class extends FlyingObject
     @.updateDirection()
     @.updatePosition()
 
-    if Math.hypo(@controller.ship.x - @x, @controller.ship.y - @y) < 20 and @source != @controller.ship
+    if @source instanceof Pirate and Math.hypo(@controller.ship.x - @x, @controller.ship.y - @y) < 20
+      @controller.animator.bulletHit(@)
+
       @controller.ship.getHit(@)
 
       @remove = true
-    else
+    else if @source instanceof Ship
       for pirate in @controller.pirates
-        if Math.hypo(pirate.x - @x, pirate.y - @y) < 20 and @source != pirate
+        if Math.hypo(pirate.x - @x, pirate.y - @y) < 20
+          @controller.animator.bulletHit(@)
+
           pirate.getHit(@)
 
           @remove = true

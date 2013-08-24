@@ -4,7 +4,7 @@ var artSprite = {
 
   "bullet.png":
   {
-    "frame": {"x":104,"y":235,"w":5,"h":5},
+    "frame": {"x":116,"y":240,"w":5,"h":5},
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": {
@@ -14,6 +14,48 @@ var artSprite = {
       "h":5
     },
     "sourceSize": {"w":5,"h":5}
+  }, 
+
+  "bullet_hit_0000.png":
+  {
+    "frame": {"x":121,"y":223,"w":15,"h":15},
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": {
+      "x":0,
+      "y":0,
+      "w":15,
+      "h":15
+    },
+    "sourceSize": {"w":15,"h":15}
+  }, 
+
+  "bullet_hit_0001.png":
+  {
+    "frame": {"x":121,"y":206,"w":15,"h":15},
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": {
+      "x":0,
+      "y":0,
+      "w":15,
+      "h":15
+    },
+    "sourceSize": {"w":15,"h":15}
+  }, 
+
+  "bullet_hit_0002.png":
+  {
+    "frame": {"x":104,"y":223,"w":15,"h":15},
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": {
+      "x":0,
+      "y":0,
+      "w":15,
+      "h":15
+    },
+    "sourceSize": {"w":15,"h":15}
   }, 
 
   "city.png":
@@ -46,7 +88,7 @@ var artSprite = {
 
   "crystal.png":
   {
-    "frame": {"x":104,"y":223,"w":10,"h":10},
+    "frame": {"x":104,"y":240,"w":10,"h":10},
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": {

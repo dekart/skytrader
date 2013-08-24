@@ -4,7 +4,7 @@
 
 
 @function sprite_position_bullet(){
-  @return -104px -235px;
+  @return -116px -240px;
 }
 @mixin sprite_bullet($width: 5px, $height: 5px) {
   width: $width;
@@ -13,6 +13,45 @@
     repeat: no-repeat;
     image: sprite_image_url();
     position: sprite_position_bullet();
+  }
+}
+
+@function sprite_position_bullet_hit_0000(){
+  @return -121px -223px;
+}
+@mixin sprite_bullet_hit_0000($width: 15px, $height: 15px) {
+  width: $width;
+  height: $height;
+  background: {
+    repeat: no-repeat;
+    image: sprite_image_url();
+    position: sprite_position_bullet_hit_0000();
+  }
+}
+
+@function sprite_position_bullet_hit_0001(){
+  @return -121px -206px;
+}
+@mixin sprite_bullet_hit_0001($width: 15px, $height: 15px) {
+  width: $width;
+  height: $height;
+  background: {
+    repeat: no-repeat;
+    image: sprite_image_url();
+    position: sprite_position_bullet_hit_0001();
+  }
+}
+
+@function sprite_position_bullet_hit_0002(){
+  @return -104px -223px;
+}
+@mixin sprite_bullet_hit_0002($width: 15px, $height: 15px) {
+  width: $width;
+  height: $height;
+  background: {
+    repeat: no-repeat;
+    image: sprite_image_url();
+    position: sprite_position_bullet_hit_0002();
   }
 }
 
@@ -43,7 +82,7 @@
 }
 
 @function sprite_position_crystal(){
-  @return -104px -223px;
+  @return -104px -240px;
 }
 @mixin sprite_crystal($width: 10px, $height: 10px) {
   width: $width;

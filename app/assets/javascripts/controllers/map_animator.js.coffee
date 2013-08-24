@@ -2,10 +2,11 @@
 
 window.MapAnimator = class extends Animator
   loops: # [StartFrame, EndFrame, Speed]
-    ship_standby: {frames: [0,  0], speed: 0.3}
-    ship_fly: {frames: [0,  0], speed: 0.3}
+    ship_standby:   {frames: [0,  0], speed: 0.3}
+    ship_fly:       {frames: [0,  0], speed: 0.3}
     pirate_standby: {frames: [0,  0], speed: 0.3}
-    pirate_fly: {frames: [0,  0], speed: 0.3}
+    pirate_fly:     {frames: [0,  0], speed: 0.3}
+    bullet_hit:     {frames: [0,  2], speed: 0.2}
 
   constructor: (controller)->
     super(controller)
@@ -16,6 +17,7 @@ window.MapAnimator = class extends Animator
     @cloud_layer = new PIXI.DisplayObjectContainer()
     @pirate_layer = new PIXI.DisplayObjectContainer()
     @bullet_layer = new PIXI.DisplayObjectContainer()
+    @explosion_layer = new PIXI.DisplayObjectContainer()
     @interface_layer = new PIXI.DisplayObjectContainer()
 
     @stage.addChild(@background_layer)
@@ -24,6 +26,7 @@ window.MapAnimator = class extends Animator
     @stage.addChild(@cloud_layer)
     @stage.addChild(@pirate_layer)
     @stage.addChild(@bullet_layer)
+    @stage.addChild(@explosion_layer)
     @stage.addChild(@interface_layer)
 
     @viewport = new PIXI.Point(0, 0)
@@ -83,6 +86,11 @@ window.MapAnimator = class extends Animator
 
   removeBullet: (bullet)->
     @bullet_layer.removeChild(_.find(@bullet_layer.children, (c)=> c.bullet.id == bullet.id))
+
+  bulletHit: (bullet)->
+    @explosion_layer.addChild(
+      @.createBulletHitSprite(bullet)
+    )
 
   removePirate: (pirate)->
     @pirate_layer.removeChild(_.find(@pirate_layer.children, (c)=> c.pirate.id == pirate.id))
@@ -156,6 +164,12 @@ window.MapAnimator = class extends Animator
     for bullet_sprite in @bullet_layer.children
       @.updateViewportPosition(bullet_sprite, bullet_sprite.bullet)
 
+
+    @explosion_layer.removeChild(sprite) for sprite in _.select(@explosion_layer.children, (s)-> s.remove_at < Date.now())
+
+    for sprite in @explosion_layer.children
+      @.updateViewportPosition(sprite, sprite.original_position)
+
     @.updateFuelProgress()
     @.updateCursorPosition()
 
@@ -209,17 +223,14 @@ window.MapAnimator = class extends Animator
     sprite.scale.x = cloud.size * 0.9 + 0.3
     sprite.scale.y = cloud.size * 0.9 + 0.3
     sprite.alpha = cloud.size * 0.8
-    sprite.position.x = cloud.x
-    sprite.position.y = cloud.y
-    #sprite.blendMode = PIXI.blendModes.SCREEN
+    sprite.position = new PIXI.Point(cloud.x, cloud.y)
     sprite.cloud = cloud
     sprite
 
   createCitySprite: (city)->
     sprite = PIXI.Sprite.fromFrame('city.png')
     sprite.anchor = new PIXI.Point(0.5, 0.5)
-    sprite.position.x = city.x
-    sprite.position.y = city.y
+    sprite.position = new PIXI.Point(city.x, city.y)
     sprite.city = city
     sprite
 
@@ -228,15 +239,23 @@ window.MapAnimator = class extends Animator
     sprite = new PIXI.MovieClip(@.loops["pirate_#{ mode }"].textures)
     sprite.mode = mode
     sprite.anchor = new PIXI.Point(0.5, 0.5)
-    sprite.position.x = pirate.x
-    sprite.position.y = pirate.y
+    sprite.position = new PIXI.Point(pirate.x, pirate.y)
     sprite.pirate = pirate
     sprite
 
   createBulletSprite: (bullet)->
     sprite = PIXI.Sprite.fromFrame('bullet.png')
     sprite.anchor = new PIXI.Point(0.5, 0.5)
-    sprite.position.x = bullet.x
-    sprite.position.y = bullet.y
+    sprite.position = new PIXI.Point(bullet.x, bullet.y)
     sprite.bullet = bullet
+    sprite
+
+  createBulletHitSprite: (bullet)->
+    sprite = new PIXI.MovieClip(@.loops["bullet_hit"].textures)
+    sprite.position = new PIXI.Point(bullet.x, bullet.y)
+    sprite.original_position = new PIXI.Point(bullet.x, bullet.y)
+    sprite.anchor = new PIXI.Point(0.5, 0.5)
+    sprite.animationSpeed = @.loops["bullet_hit"].speed
+    sprite.play()
+    sprite.remove_at = Date.now() + 300
     sprite
