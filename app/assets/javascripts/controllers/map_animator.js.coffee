@@ -89,8 +89,6 @@ window.MapAnimator = class extends Animator
 
   animate: =>
     unless @paused_at
-      createjs.Tween.tick(Date.now() - @last_tick)
-
       @controller.updateState()
 
       @.updateViewport()

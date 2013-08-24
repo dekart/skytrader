@@ -4,7 +4,6 @@
 #= require underscore
 #= require visibility
 #= require pixi
-#= require tweenjs
 
 #= require spine
 
