@@ -1,12 +1,17 @@
 window.Ship = class
   maxSpeed: 4
 
-  constructor: (@x, @y)->
+  constructor: ->
+    @x = 100
+    @y = 100
     @accelX = 0
     @accelY = 0
     @speedX = 0
     @speedY = 0
     @direction = 'right'
+
+    @money = 200
+    @cargo = {}
 
   updateState: ->
     if @accelX < 0
@@ -35,5 +40,30 @@ window.Ship = class
     @y = 0 if @y < 0
     @y = mapSize[0] if @y > mapSize[0]
 
-  isStopped: ->
-    @speedX == 0 and @speedY == 0
+  canDock: ->
+    Math.abs(@speedX) < 0.3 and Math.abs(@speedY) < 0.3
+
+  buyCargo: (type, city)->
+    if @money >= city.prices[type]
+      @money -= city.prices[type]
+
+      @cargo[type] ?= 0
+      @cargo[type] += 1
+
+      city.stock[type] -= 1
+
+      true
+    else
+      'not_enough_money'
+
+  sellCargo: (type, city)->
+    if @cargo[type] > 0
+      @money += city.prices[type]
+
+      @cargo[type] -= 1
+
+      city.stock[type] += 1
+
+      true
+    else
+      'not_enough_cargo'

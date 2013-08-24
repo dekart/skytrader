@@ -6,7 +6,7 @@ window.MapController = class extends BaseController
   constructor: ->
     super
 
-    @ship = new Ship(100, 100)
+    @ship = new Ship()
 
     @clouds = []
 
@@ -48,9 +48,9 @@ window.MapController = class extends BaseController
       when 40, 83 # down
         @ship.accelY = 1
       when 13
-        if @ship.isStopped()
+        if @ship.canDock()
           for city in @cities
-            CityController.show(city) if city.canDock(@ship)
+            CityController.show(city, @ship) if city.canDock(@ship)
       else
         process_default = true
 

@@ -1,5 +1,35 @@
 <div class="content">
-some content some content some content some content some content some content some content some content some content some content some content some content some content some content some content some content some content some content some content some content some content some content some content some content some content
+  Type: <%= @city.type %><br>
+
+  <table>
+    <tr>
+      <th>Item</th>
+      <th>Price</th>
+      <th>In Stock</th>
+      <th>You Have</th>
+    </tr>
+
+    <% for item, price of @city.prices: %>
+      <tr>
+        <td><%= item %></td>
+        <td><%= price %></td>
+        <td><%= @city.stock[item] %></td>
+        <td><%= @ship.cargo[item] %></td>
+        <td>
+          <% if @city.stock[item] > 0: %>
+            <button class="buy" data-type="<%= item %>">Buy</button>
+          <% end %>
+        </td>
+        <td>
+          <% if @ship.cargo[item] > 0: %>
+            <button class="sell" data-type="<%= item %>">Sell</button>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+
+  Your money: <%= @ship.money %>
 </div>
 
 <button class="close"></button>
