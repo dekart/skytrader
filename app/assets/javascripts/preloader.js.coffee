@@ -4,6 +4,7 @@ window.Preloader = class
   manifest: [
     { src: '$assetPath(logo.jpg)' }
     { src: '$assetPath(art.png)' }
+    { src: '$assetPath(sky.jpg)' }
   ]
 
   constructor: (@callback)->

@@ -8,10 +8,12 @@ window.MapAnimator = class extends Animator
   constructor: (controller)->
     super(controller)
 
+    @background_layer = new PIXI.DisplayObjectContainer()
     @city_layer = new PIXI.DisplayObjectContainer()
     @ship_layer = new PIXI.DisplayObjectContainer()
     @cloud_layer = new PIXI.DisplayObjectContainer()
 
+    @stage.addChild(@background_layer)
     @stage.addChild(@city_layer)
     @stage.addChild(@ship_layer)
     @stage.addChild(@cloud_layer)
@@ -36,6 +38,9 @@ window.MapAnimator = class extends Animator
     @.attachRendererTo(@controller.el)
 
   addSprites: ->
+    @background_sprite = PIXI.Sprite.fromImage('$assetPath(sky.jpg)')
+    @background_layer.addChild(@background_sprite)
+
     @ship_sprite = @.createShipSprite('standby')
 
     @ship_layer.addChild(@ship_sprite)
@@ -116,6 +121,7 @@ window.MapAnimator = class extends Animator
     sprite.anchor = new PIXI.Point(0.5, 0.5)
     sprite.scale.x = cloud.size * 0.9 + 0.3
     sprite.scale.y = cloud.size * 0.9 + 0.3
+    sprite.alpha = cloud.size * 0.8
     sprite.position.x = cloud.x
     sprite.position.y = cloud.y
     #sprite.blendMode = PIXI.blendModes.SCREEN

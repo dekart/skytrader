@@ -69,3 +69,5 @@ window.MapController = class extends BaseController
 
   updateState: ->
     @ship.updateState()
+
+    cloud.updateState() for cloud in @clouds

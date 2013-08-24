@@ -7,3 +7,7 @@ window.Cloud = class
     )
 
   constructor: (@x, @y, @size)->
+
+  updateState: ->
+    @x -= 0.15 * @size
+    @x = mapSize[0] if @x < 0
