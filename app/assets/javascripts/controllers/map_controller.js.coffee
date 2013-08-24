@@ -95,7 +95,7 @@ window.MapController = class extends BaseController
 
     @animator.addBullet(bullet)
 
-  removeBullet: (bullet)=>
+  removeBullet: (bullet)->
     new_bullets = []
 
     for b in @bullets
@@ -104,6 +104,16 @@ window.MapController = class extends BaseController
     @bullets = new_bullets
 
     @animator.removeBullet(bullet)
+
+  removePirate: (pirate)->
+    new_pirates = []
+
+    for p in @pirates
+      new_pirates.push(p) if p != pirate
+
+    @pirates = new_pirates
+
+    @animator.removePirate(pirate)
 
   updateState: ->
     @ship.updateState()

@@ -79,6 +79,9 @@ window.MapAnimator = class extends Animator
   removeBullet: (bullet)->
     @bullet_layer.removeChild(_.find(@bullet_layer.children, (c)=> c.bullet.id == bullet.id))
 
+  removePirate: (pirate)->
+    @pirate_layer.removeChild(_.find(@pirate_layer.children, (c)=> c.pirate.id == pirate.id))
+
   animate: =>
     unless @paused_at
       createjs.Tween.tick(Date.now() - @last_tick)

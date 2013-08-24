@@ -11,13 +11,16 @@ window.Pirate = class extends FlyingObject
     )
 
   maxSpeed: 3.5
-  detectionDistance: 200
+  detectionDistance: 250
   roundsPerSecond: 2
+  maxHealth: 10
 
   constructor: (controller, x, y)->
     super(controller, x, y)
 
     @direction = _.shuffle(['right', 'left'])[0]
+
+    @health = @.maxHealth
 
   updateState: ->
     distance = Math.hypo(@x - @controller.ship.x, @y - @controller.ship.y)
@@ -45,4 +48,15 @@ window.Pirate = class extends FlyingObject
 
     @shot_at = Date.now()
 
-    @controller.addBullet(new Bullet(@controller, @x, @y, @controller.ship.x, @controller.ship.y))
+    @controller.addBullet(
+      new Bullet(@, @x, @y, @controller.ship.x, @controller.ship.y)
+    )
+
+  getHit: (bullet)->
+    @health -= bullet.damage
+
+    @speedX *= 0.5
+    @speedY *= 0.5
+
+    if @health < 0
+      @controller.removePirate(@)

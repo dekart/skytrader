@@ -7,8 +7,8 @@ window.Bullet = class extends FlyingObject
   lifetime: 1000
   damage: 1
 
-  constructor: (controller, x, y, to_x, to_y)->
-    super(controller, x, y)
+  constructor: (@source, x, y, to_x, to_y)->
+    super(@source.controller, x, y)
 
     dx = to_x - x
     dy = to_y - y
@@ -23,19 +23,21 @@ window.Bullet = class extends FlyingObject
 
     @shot_at = Date.now()
 
-    if @x == @controller.ship.x and @y == @controller.ship.y
-      @friendly = true
-
 
   updateState: ->
     @.updateDirection()
     @.updatePosition()
 
-    if Math.hypo(@controller.ship.x - @x, @controller.ship.y - @y) < 20
-      if not @friendly or Date.now() - @shot_at > @.lifetime / 2
-        @controller.ship.getHit(@)
+    if Math.hypo(@controller.ship.x - @x, @controller.ship.y - @y) < 20 and @source != @controller.ship
+      @controller.ship.getHit(@)
 
-        @remove = true
+      @remove = true
+    else
+      for pirate in @controller.pirates
+        if Math.hypo(pirate.x - @x, pirate.y - @y) < 20 and @source != pirate
+          pirate.getHit(@)
+
+          @remove = true
 
     if Date.now() - @shot_at > @.lifetime
       @remove = true
