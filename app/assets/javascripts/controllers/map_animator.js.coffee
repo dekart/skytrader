@@ -4,6 +4,8 @@ window.MapAnimator = class extends Animator
   loops: # [StartFrame, EndFrame, Speed]
     ship_standby: {frames: [0,  0], speed: 0.3}
     ship_fly: {frames: [0,  0], speed: 0.3}
+    pirate_standby: {frames: [0,  0], speed: 0.3}
+    pirate_fly: {frames: [0,  0], speed: 0.3}
 
   constructor: (controller)->
     super(controller)
@@ -12,11 +14,13 @@ window.MapAnimator = class extends Animator
     @city_layer = new PIXI.DisplayObjectContainer()
     @ship_layer = new PIXI.DisplayObjectContainer()
     @cloud_layer = new PIXI.DisplayObjectContainer()
+    @pirate_layer = new PIXI.DisplayObjectContainer()
 
     @stage.addChild(@background_layer)
     @stage.addChild(@city_layer)
     @stage.addChild(@ship_layer)
     @stage.addChild(@cloud_layer)
+    @stage.addChild(@pirate_layer)
 
     @viewport = new PIXI.Point(0, 0)
 
@@ -50,6 +54,9 @@ window.MapAnimator = class extends Animator
 
     for city in @controller.cities
       @city_layer.addChild(@.createCitySprite(city))
+
+    for pirate in @controller.pirates
+      @pirate_layer.addChild(@.createPirateSprite(pirate, 'standby'))
 
 
   animate: =>
@@ -102,6 +109,23 @@ window.MapAnimator = class extends Animator
     for city_sprite in @city_layer.children
       @.updateViewportPosition(city_sprite, city_sprite.city)
 
+    for pirate_sprite in @pirate_layer.children
+      if (pirate_sprite.pirate.speedX != 0 or pirate_sprite.pirate.speedY != 0) and pirate_sprite.mode != 'fly'
+        @pirate_layer.removeChild(pirate_sprite)
+        pirate_sprite = @.createPirateSprite(pirate_sprite.pirate, 'fly')
+        @pirate_layer.addChild(pirate_sprite)
+      else if (pirate_sprite.pirate.speedX == 0 and pirate_sprite.pirate.speedY == 0) and pirate_sprite.mode != 'standby'
+        @pirate_layer.removeChild(pirate_sprite)
+        pirate_sprite = @.createPirateSprite(pirate_sprite.pirate, 'standby')
+        @pirate_layer.addChild(pirate_sprite)
+
+      if pirate_sprite.pirate.direction == 'left'
+        pirate_sprite.scale.x = -1
+      else
+        pirate_sprite.scale.x = 1
+
+      @.updateViewportPosition(pirate_sprite, pirate_sprite.pirate)
+
   updateViewportPosition: (sprite, object)->
     sprite.position = @.viewportPosition(object)
 
@@ -134,4 +158,14 @@ window.MapAnimator = class extends Animator
     sprite.position.x = city.x
     sprite.position.y = city.y
     sprite.city = city
+    sprite
+
+
+  createPirateSprite: (pirate, mode)->
+    sprite = new PIXI.MovieClip(@.loops["pirate_#{ mode }"].textures)
+    sprite.mode = mode
+    sprite.anchor = new PIXI.Point(0.5, 0.5)
+    sprite.position.x = pirate.x
+    sprite.position.y = pirate.y
+    sprite.pirate = pirate
     sprite

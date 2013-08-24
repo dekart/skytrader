@@ -21,6 +21,12 @@ window.MapController = class extends BaseController
     @animator = new MapAnimator(@)
 
 
+    @pirates = []
+
+    for i in [1..50]
+      @pirates.push Pirate.generate()
+
+
   show: ->
     @.setupEventListeners()
 
@@ -71,3 +77,5 @@ window.MapController = class extends BaseController
     @ship.updateState()
 
     cloud.updateState() for cloud in @clouds
+
+    pirate.updateState(@ship) for pirate in @pirates
