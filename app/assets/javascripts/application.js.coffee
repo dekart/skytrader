@@ -110,7 +110,8 @@ window.repairCost = 1
 
 window.shipUpgrades = {
   sparrow:  [Ship.Sparrow, 500],
-  hawk:     [Ship.Hawk, 1000]
+  hawk:     [Ship.Hawk, 1500]
+  squacco:  [Ship.Squacco, 5000]
 }
 
 Math.hypo = (a, b)->

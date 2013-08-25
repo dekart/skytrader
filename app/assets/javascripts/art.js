@@ -4,7 +4,7 @@ var artSprite = {
 
   "bullet.png":
   {
-    "frame": {"x":249,"y":2,"w":5,"h":5},
+    "frame": {"x":370,"y":54,"w":5,"h":5},
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": {
@@ -18,7 +18,7 @@ var artSprite = {
 
   "bullet_hit_0000.png":
   {
-    "frame": {"x":121,"y":186,"w":15,"h":15},
+    "frame": {"x":205,"y":136,"w":15,"h":15},
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": {
@@ -32,7 +32,7 @@ var artSprite = {
 
   "bullet_hit_0001.png":
   {
-    "frame": {"x":104,"y":186,"w":15,"h":15},
+    "frame": {"x":188,"y":136,"w":15,"h":15},
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": {
@@ -46,7 +46,7 @@ var artSprite = {
 
   "bullet_hit_0002.png":
   {
-    "frame": {"x":232,"y":19,"w":15,"h":15},
+    "frame": {"x":171,"y":136,"w":15,"h":15},
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": {
@@ -60,7 +60,7 @@ var artSprite = {
 
   "cargo.png":
   {
-    "frame": {"x":116,"y":203,"w":10,"h":10},
+    "frame": {"x":358,"y":90,"w":10,"h":10},
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": {
@@ -74,7 +74,7 @@ var artSprite = {
 
   "city_0000.png":
   {
-    "frame": {"x":104,"y":240,"w":100,"h":100},
+    "frame": {"x":256,"y":2,"w":100,"h":100},
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": {
@@ -88,7 +88,7 @@ var artSprite = {
 
   "city_0001.png":
   {
-    "frame": {"x":2,"y":186,"w":100,"h":100},
+    "frame": {"x":154,"y":2,"w":100,"h":100},
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": {
@@ -102,7 +102,7 @@ var artSprite = {
 
   "cloud.png":
   {
-    "frame": {"x":2,"y":34,"w":150,"h":150},
+    "frame": {"x":2,"y":2,"w":150,"h":150},
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": {
@@ -116,7 +116,7 @@ var artSprite = {
 
   "cursor.png":
   {
-    "frame": {"x":232,"y":2,"w":15,"h":15},
+    "frame": {"x":154,"y":136,"w":15,"h":15},
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": {
@@ -130,7 +130,7 @@ var artSprite = {
 
   "fuel.png":
   {
-    "frame": {"x":104,"y":203,"w":10,"h":10},
+    "frame": {"x":358,"y":78,"w":10,"h":10},
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": {
@@ -144,7 +144,7 @@ var artSprite = {
 
   "health.png":
   {
-    "frame": {"x":138,"y":198,"w":10,"h":10},
+    "frame": {"x":358,"y":66,"w":10,"h":10},
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": {
@@ -158,7 +158,7 @@ var artSprite = {
 
   "interface.png":
   {
-    "frame": {"x":2,"y":2,"w":228,"h":30},
+    "frame": {"x":154,"y":104,"w":228,"h":30},
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": {
@@ -172,7 +172,7 @@ var artSprite = {
 
   "money.png":
   {
-    "frame": {"x":138,"y":186,"w":10,"h":10},
+    "frame": {"x":358,"y":54,"w":10,"h":10},
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": {
@@ -186,7 +186,7 @@ var artSprite = {
 
   "pirate_0000.png":
   {
-    "frame": {"x":158,"y":394,"w":50,"h":50},
+    "frame": {"x":466,"y":158,"w":50,"h":50},
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": {
@@ -200,7 +200,7 @@ var artSprite = {
 
   "pirate_0001.png":
   {
-    "frame": {"x":106,"y":446,"w":50,"h":50},
+    "frame": {"x":414,"y":158,"w":50,"h":50},
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": {
@@ -214,7 +214,7 @@ var artSprite = {
 
   "pirate_0002.png":
   {
-    "frame": {"x":106,"y":394,"w":50,"h":50},
+    "frame": {"x":466,"y":106,"w":50,"h":50},
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": {
@@ -228,7 +228,7 @@ var artSprite = {
 
   "pirate_0003.png":
   {
-    "frame": {"x":158,"y":342,"w":50,"h":50},
+    "frame": {"x":414,"y":106,"w":50,"h":50},
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": {
@@ -242,7 +242,7 @@ var artSprite = {
 
   "ship_hawk_0000.png":
   {
-    "frame": {"x":106,"y":342,"w":50,"h":50},
+    "frame": {"x":436,"y":54,"w":50,"h":50},
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": {
@@ -256,7 +256,7 @@ var artSprite = {
 
   "ship_hawk_0001.png":
   {
-    "frame": {"x":54,"y":446,"w":50,"h":50},
+    "frame": {"x":384,"y":54,"w":50,"h":50},
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": {
@@ -270,7 +270,7 @@ var artSprite = {
 
   "ship_hawk_0002.png":
   {
-    "frame": {"x":54,"y":394,"w":50,"h":50},
+    "frame": {"x":362,"y":188,"w":50,"h":50},
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": {
@@ -284,7 +284,7 @@ var artSprite = {
 
   "ship_hawk_0003.png":
   {
-    "frame": {"x":54,"y":342,"w":50,"h":50},
+    "frame": {"x":362,"y":136,"w":50,"h":50},
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": {
@@ -298,7 +298,7 @@ var artSprite = {
 
   "ship_sparrow_0000.png":
   {
-    "frame": {"x":2,"y":444,"w":50,"h":50},
+    "frame": {"x":310,"y":188,"w":50,"h":50},
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": {
@@ -312,7 +312,7 @@ var artSprite = {
 
   "ship_sparrow_0001.png":
   {
-    "frame": {"x":2,"y":392,"w":50,"h":50},
+    "frame": {"x":310,"y":136,"w":50,"h":50},
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": {
@@ -326,7 +326,7 @@ var artSprite = {
 
   "ship_sparrow_0002.png":
   {
-    "frame": {"x":2,"y":340,"w":50,"h":50},
+    "frame": {"x":258,"y":188,"w":50,"h":50},
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": {
@@ -340,7 +340,63 @@ var artSprite = {
 
   "ship_sparrow_0003.png":
   {
-    "frame": {"x":2,"y":288,"w":50,"h":50},
+    "frame": {"x":258,"y":136,"w":50,"h":50},
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": {
+      "x":0,
+      "y":0,
+      "w":50,
+      "h":50
+    },
+    "sourceSize": {"w":50,"h":50}
+  }, 
+
+  "ship_squacco_0000.png":
+  {
+    "frame": {"x":462,"y":2,"w":50,"h":50},
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": {
+      "x":0,
+      "y":0,
+      "w":50,
+      "h":50
+    },
+    "sourceSize": {"w":50,"h":50}
+  }, 
+
+  "ship_squacco_0001.png":
+  {
+    "frame": {"x":410,"y":2,"w":50,"h":50},
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": {
+      "x":0,
+      "y":0,
+      "w":50,
+      "h":50
+    },
+    "sourceSize": {"w":50,"h":50}
+  }, 
+
+  "ship_squacco_0002.png":
+  {
+    "frame": {"x":206,"y":153,"w":50,"h":50},
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": {
+      "x":0,
+      "y":0,
+      "w":50,
+      "h":50
+    },
+    "sourceSize": {"w":50,"h":50}
+  }, 
+
+  "ship_squacco_0003.png":
+  {
+    "frame": {"x":358,"y":2,"w":50,"h":50},
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": {
@@ -354,7 +410,7 @@ var artSprite = {
 
   "station_0000.png":
   {
-    "frame": {"x":154,"y":138,"w":100,"h":100},
+    "frame": {"x":104,"y":154,"w":100,"h":100},
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": {
@@ -368,7 +424,7 @@ var artSprite = {
 
   "station_0001.png":
   {
-    "frame": {"x":154,"y":36,"w":100,"h":100},
+    "frame": {"x":2,"y":154,"w":100,"h":100},
     "rotated": false,
     "trimmed": false,
     "spriteSourceSize": {

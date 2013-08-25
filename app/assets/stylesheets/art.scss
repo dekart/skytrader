@@ -4,7 +4,7 @@
 
 
 @function sprite_position_bullet(){
-  @return -249px -2px;
+  @return -370px -54px;
 }
 @mixin sprite_bullet($width: 5px, $height: 5px) {
   width: $width;
@@ -17,7 +17,7 @@
 }
 
 @function sprite_position_bullet_hit_0000(){
-  @return -121px -186px;
+  @return -205px -136px;
 }
 @mixin sprite_bullet_hit_0000($width: 15px, $height: 15px) {
   width: $width;
@@ -30,7 +30,7 @@
 }
 
 @function sprite_position_bullet_hit_0001(){
-  @return -104px -186px;
+  @return -188px -136px;
 }
 @mixin sprite_bullet_hit_0001($width: 15px, $height: 15px) {
   width: $width;
@@ -43,7 +43,7 @@
 }
 
 @function sprite_position_bullet_hit_0002(){
-  @return -232px -19px;
+  @return -171px -136px;
 }
 @mixin sprite_bullet_hit_0002($width: 15px, $height: 15px) {
   width: $width;
@@ -56,7 +56,7 @@
 }
 
 @function sprite_position_cargo(){
-  @return -116px -203px;
+  @return -358px -90px;
 }
 @mixin sprite_cargo($width: 10px, $height: 10px) {
   width: $width;
@@ -69,7 +69,7 @@
 }
 
 @function sprite_position_city_0000(){
-  @return -104px -240px;
+  @return -256px -2px;
 }
 @mixin sprite_city_0000($width: 100px, $height: 100px) {
   width: $width;
@@ -82,7 +82,7 @@
 }
 
 @function sprite_position_city_0001(){
-  @return -2px -186px;
+  @return -154px -2px;
 }
 @mixin sprite_city_0001($width: 100px, $height: 100px) {
   width: $width;
@@ -95,7 +95,7 @@
 }
 
 @function sprite_position_cloud(){
-  @return -2px -34px;
+  @return -2px -2px;
 }
 @mixin sprite_cloud($width: 150px, $height: 150px) {
   width: $width;
@@ -108,7 +108,7 @@
 }
 
 @function sprite_position_cursor(){
-  @return -232px -2px;
+  @return -154px -136px;
 }
 @mixin sprite_cursor($width: 15px, $height: 15px) {
   width: $width;
@@ -121,7 +121,7 @@
 }
 
 @function sprite_position_fuel(){
-  @return -104px -203px;
+  @return -358px -78px;
 }
 @mixin sprite_fuel($width: 10px, $height: 10px) {
   width: $width;
@@ -134,7 +134,7 @@
 }
 
 @function sprite_position_health(){
-  @return -138px -198px;
+  @return -358px -66px;
 }
 @mixin sprite_health($width: 10px, $height: 10px) {
   width: $width;
@@ -147,7 +147,7 @@
 }
 
 @function sprite_position_interface(){
-  @return -2px -2px;
+  @return -154px -104px;
 }
 @mixin sprite_interface($width: 228px, $height: 30px) {
   width: $width;
@@ -160,7 +160,7 @@
 }
 
 @function sprite_position_money(){
-  @return -138px -186px;
+  @return -358px -54px;
 }
 @mixin sprite_money($width: 10px, $height: 10px) {
   width: $width;
@@ -173,7 +173,7 @@
 }
 
 @function sprite_position_pirate_0000(){
-  @return -158px -394px;
+  @return -466px -158px;
 }
 @mixin sprite_pirate_0000($width: 50px, $height: 50px) {
   width: $width;
@@ -186,7 +186,7 @@
 }
 
 @function sprite_position_pirate_0001(){
-  @return -106px -446px;
+  @return -414px -158px;
 }
 @mixin sprite_pirate_0001($width: 50px, $height: 50px) {
   width: $width;
@@ -199,7 +199,7 @@
 }
 
 @function sprite_position_pirate_0002(){
-  @return -106px -394px;
+  @return -466px -106px;
 }
 @mixin sprite_pirate_0002($width: 50px, $height: 50px) {
   width: $width;
@@ -212,7 +212,7 @@
 }
 
 @function sprite_position_pirate_0003(){
-  @return -158px -342px;
+  @return -414px -106px;
 }
 @mixin sprite_pirate_0003($width: 50px, $height: 50px) {
   width: $width;
@@ -225,7 +225,7 @@
 }
 
 @function sprite_position_ship_hawk_0000(){
-  @return -106px -342px;
+  @return -436px -54px;
 }
 @mixin sprite_ship_hawk_0000($width: 50px, $height: 50px) {
   width: $width;
@@ -238,7 +238,7 @@
 }
 
 @function sprite_position_ship_hawk_0001(){
-  @return -54px -446px;
+  @return -384px -54px;
 }
 @mixin sprite_ship_hawk_0001($width: 50px, $height: 50px) {
   width: $width;
@@ -251,7 +251,7 @@
 }
 
 @function sprite_position_ship_hawk_0002(){
-  @return -54px -394px;
+  @return -362px -188px;
 }
 @mixin sprite_ship_hawk_0002($width: 50px, $height: 50px) {
   width: $width;
@@ -264,7 +264,7 @@
 }
 
 @function sprite_position_ship_hawk_0003(){
-  @return -54px -342px;
+  @return -362px -136px;
 }
 @mixin sprite_ship_hawk_0003($width: 50px, $height: 50px) {
   width: $width;
@@ -277,7 +277,7 @@
 }
 
 @function sprite_position_ship_sparrow_0000(){
-  @return -2px -444px;
+  @return -310px -188px;
 }
 @mixin sprite_ship_sparrow_0000($width: 50px, $height: 50px) {
   width: $width;
@@ -290,7 +290,7 @@
 }
 
 @function sprite_position_ship_sparrow_0001(){
-  @return -2px -392px;
+  @return -310px -136px;
 }
 @mixin sprite_ship_sparrow_0001($width: 50px, $height: 50px) {
   width: $width;
@@ -303,7 +303,7 @@
 }
 
 @function sprite_position_ship_sparrow_0002(){
-  @return -2px -340px;
+  @return -258px -188px;
 }
 @mixin sprite_ship_sparrow_0002($width: 50px, $height: 50px) {
   width: $width;
@@ -316,7 +316,7 @@
 }
 
 @function sprite_position_ship_sparrow_0003(){
-  @return -2px -288px;
+  @return -258px -136px;
 }
 @mixin sprite_ship_sparrow_0003($width: 50px, $height: 50px) {
   width: $width;
@@ -328,8 +328,60 @@
   }
 }
 
+@function sprite_position_ship_squacco_0000(){
+  @return -462px -2px;
+}
+@mixin sprite_ship_squacco_0000($width: 50px, $height: 50px) {
+  width: $width;
+  height: $height;
+  background: {
+    repeat: no-repeat;
+    image: sprite_image_url();
+    position: sprite_position_ship_squacco_0000();
+  }
+}
+
+@function sprite_position_ship_squacco_0001(){
+  @return -410px -2px;
+}
+@mixin sprite_ship_squacco_0001($width: 50px, $height: 50px) {
+  width: $width;
+  height: $height;
+  background: {
+    repeat: no-repeat;
+    image: sprite_image_url();
+    position: sprite_position_ship_squacco_0001();
+  }
+}
+
+@function sprite_position_ship_squacco_0002(){
+  @return -206px -153px;
+}
+@mixin sprite_ship_squacco_0002($width: 50px, $height: 50px) {
+  width: $width;
+  height: $height;
+  background: {
+    repeat: no-repeat;
+    image: sprite_image_url();
+    position: sprite_position_ship_squacco_0002();
+  }
+}
+
+@function sprite_position_ship_squacco_0003(){
+  @return -358px -2px;
+}
+@mixin sprite_ship_squacco_0003($width: 50px, $height: 50px) {
+  width: $width;
+  height: $height;
+  background: {
+    repeat: no-repeat;
+    image: sprite_image_url();
+    position: sprite_position_ship_squacco_0003();
+  }
+}
+
 @function sprite_position_station_0000(){
-  @return -154px -138px;
+  @return -104px -154px;
 }
 @mixin sprite_station_0000($width: 100px, $height: 100px) {
   width: $width;
@@ -342,7 +394,7 @@
 }
 
 @function sprite_position_station_0001(){
-  @return -154px -36px;
+  @return -2px -154px;
 }
 @mixin sprite_station_0001($width: 100px, $height: 100px) {
   width: $width;

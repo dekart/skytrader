@@ -46,6 +46,7 @@ en:
     ships:
       sparrow: "Sparrow"
       hawk: "Hawk"
+      squacco: "Squacco"
 
     station:
       description: "This is <b>Sky Guild Station</b>. You can buy new ships here."

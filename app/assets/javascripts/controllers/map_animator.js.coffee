@@ -4,6 +4,7 @@ window.MapAnimator = class extends Animator
   loops: # [StartFrame, EndFrame, Speed]
     ship_sparrow:       {frames: [0,  3], speed: 0.3}
     ship_hawk:       {frames: [0,  3], speed: 0.3}
+    ship_squacco:       {frames: [0,  3], speed: 0.3}
     pirate:     {frames: [0,  3], speed: 0.3}
     city:       {frames: [0,  1], speed: 0.3}
     station:    {frames: [0,  1], speed: 0.2}
