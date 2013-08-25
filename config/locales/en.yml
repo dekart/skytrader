@@ -21,8 +21,8 @@
 
 en:
   game:
-    name: "My Game"
-    description: "My super game made for fun and profit"
+    name: "Sky Trader"
+    description: "Become the captain of the sky ship, visit all floating islands, fight against sky pirates, and earn the honor to join the Sky Guild!"
 
     resources:
       food: "Food"
