@@ -1,5 +1,5 @@
-window.CityController = class extends BaseController
-  className: 'city_dialog'
+window.StationController = class extends BaseController
+  className: 'station_dialog'
 
   @show: (args...)->
     @controller ?= new @()
@@ -10,9 +10,8 @@ window.CityController = class extends BaseController
 
     @overlay = $("<div class='dialog_overlay'></div>")
 
-  show: (@map, @city)->
+  show: (@map, @station)->
     @map.ship.dock()
-    @city.shipDocks()
 
     @.setupEventListeners()
 
@@ -40,7 +39,7 @@ window.CityController = class extends BaseController
 
   render: ->
     @html(
-      @.renderTemplate('city', ship: @map.ship)
+      @.renderTemplate('station', ship: @map.ship)
     )
 
   renderError: (text)->
@@ -53,7 +52,6 @@ window.CityController = class extends BaseController
   setupEventListeners: ->
     @el.on('click', '.close', @.onCloseClick)
     @el.on('click', '.buy', @.onBuyClick)
-    @el.on('click', '.sell', @.onSellClick)
     @el.on('click', '.refuel', @.onRefuelClick)
     @el.on('click', '.repair', @.onRepairClick)
 
@@ -62,7 +60,6 @@ window.CityController = class extends BaseController
   unbindEventListeners: ->
     @el.off('click', '.close', @.onCloseClick)
     @el.off('click', '.buy', @.onBuyClick)
-    @el.off('click', '.sell', @.onSellClick)
     @el.off('click', '.refuel', @.onRefuelClick)
     @el.off('click', '.repair', @.onRepairClick)
 
@@ -77,19 +74,11 @@ window.CityController = class extends BaseController
   onBuyClick: (e)=>
     type = $(e.currentTarget).data('type')
 
-    result = @map.ship.buyCargo(type, @city)
+    result = @map.ship.buyUpgrade(type)
 
-    if result == true
-      @.render()
-    else
-      @.renderError(I18n.t("game.city.errors.#{ result }"))
+    if result[0] == true
+      @map.ship = result[1]
 
-  onSellClick: (e)=>
-    type = $(e.currentTarget).data('type')
-
-    result = @map.ship.sellCargo(type, @city)
-
-    if result == true
       @.render()
     else
       @.renderError(I18n.t("game.city.errors.#{ result }"))
@@ -109,3 +98,16 @@ window.CityController = class extends BaseController
       @.render()
     else
       @.renderError(I18n.t("game.city.errors.#{ result }"))
+
+  upgradePrices: ->
+    result = []
+
+    for key, [klass, price] of window.shipUpgrades
+      result.push(
+        type:     key
+        current:  (@map.ship instanceof klass)
+        name:     I18n.t("game.ships.#{ key }")
+        price:    _.max([0, price - @map.ship.price() / 2])
+      )
+
+    result

@@ -7,22 +7,15 @@ window.MapController = class extends BaseController
   constructor: ->
     super
 
-    @ship = new Ship(@)
+    @ship = new Ship.Sparrow(@)
 
-    @clouds = []
+    @clouds = (Cloud.generate(@) for i in [1..100])
 
-    for i in [1..100]
-      @clouds.push Cloud.generate(@)
+    @cities = (City.generate(@) for i in [1..20])
 
-    @cities = []
+    @stations = (Station.generate(@) for i in [1..10])
 
-    for i in [1..20]
-      @cities.push City.generate(@)
-
-    @pirates = []
-
-    for i in [1..50]
-      @pirates.push Pirate.generate(@)
+    @pirates = (Pirate.generate(@) for i in [1..50])
 
     @bullets = []
 
@@ -62,9 +55,14 @@ window.MapController = class extends BaseController
       when 40, 83 # down
         @ship.accelY = 1
       when 13
-        if @ship.canDock() and not CityController.controller?.visible
-          for city in @cities
-            CityController.show(@, city, @ship) if city.canDock()
+        if @ship.canDock()
+          if not CityController.controller?.visible
+            for city in @cities
+              CityController.show(@, city) if city.canDock()
+
+          if not StationController.controller?.visible
+            for station in @stations
+              StationController.show(@, station) if station.canDock()
       else
         process_default = true
 

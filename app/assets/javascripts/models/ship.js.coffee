@@ -1,13 +1,6 @@
 #=require ./flying_object
 
 window.Ship = class extends FlyingObject
-  maxSpeed: 4
-  maxCargo: 10
-  maxHealth: 100
-  maxFuel: 5
-
-  roundsPerSecond: 2
-
   constructor: (controller)->
     super(controller, 100, 100)
 
@@ -15,8 +8,9 @@ window.Ship = class extends FlyingObject
     @fuel = @.maxFuel
     @fuel_reduced_at = Date.now()
 
-    @money = 200
+    @money = 500
     @cargo = {}
+    @docked = false
 
   updateState: ->
     super
@@ -122,3 +116,23 @@ window.Ship = class extends FlyingObject
       @health = @.maxHealth
 
       true
+
+  price: ->
+    _.find(_.pairs(window.shipUpgrades), ([k, v])=> v[0] == @.constructor )[1][1]
+
+  buyUpgrade: (type)->
+    price = window.shipUpgrades[type][1] - @.price() / 2
+
+    if @money < price
+      [false, 'not_enough_money']
+    else
+      @money -= price
+
+      new_ship = new window.shipUpgrades[type][0](@controller)
+      new_ship.money = @money
+      new_ship.cargo = @cargo
+      new_ship.docked = true
+      new_ship.x = @x
+      new_ship.y = @y
+
+      [true, new_ship]

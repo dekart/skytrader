@@ -10,8 +10,8 @@ window.Pirate = class extends FlyingObject
       _.random(canvasSize.height, mapSize[1])
     )
 
-  maxSpeed: 3.5
-  detectionDistance: 250
+  maxSpeed: 2.5
+  detectionDistance: 200
   roundsPerSecond: 2
   maxHealth: 10
 

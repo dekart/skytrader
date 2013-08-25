@@ -76,6 +76,9 @@ window.MapAnimator = class extends Animator
     for city in @controller.cities
       @city_layer.addChild(@.createCitySprite(city))
 
+    for station in @controller.stations
+      @city_layer.addChild(@.createStationSprite(station))
+
     for pirate in @controller.pirates
       @pirate_layer.addChild(@.createPirateSprite(pirate, 'standby'))
 
@@ -85,7 +88,7 @@ window.MapAnimator = class extends Animator
     @bullet_layer.addChild(@.createBulletSprite(bullet))
 
   removeBullet: (bullet)->
-    @bullet_layer.removeChild(_.find(@bullet_layer.children, (c)=> c.bullet.id == bullet.id))
+    @bullet_layer.removeChild(_.find(@bullet_layer.children, (c)=> c.source.id == bullet.id))
 
   bulletHit: (bullet)->
     @explosion_layer.addChild(
@@ -93,7 +96,7 @@ window.MapAnimator = class extends Animator
     )
 
   removePirate: (pirate)->
-    @pirate_layer.removeChild(_.find(@pirate_layer.children, (c)=> c.pirate.id == pirate.id))
+    @pirate_layer.removeChild(_.find(@pirate_layer.children, (c)=> c.source.id == pirate.id))
 
   animate: =>
     unless @paused_at
@@ -139,30 +142,30 @@ window.MapAnimator = class extends Animator
     @.updateViewportPosition(@ship_sprite, @controller.ship)
 
     for cloud_sprite in @cloud_layer.children
-      @.updateViewportPosition(cloud_sprite, cloud_sprite.cloud)
+      @.updateViewportPosition(cloud_sprite, cloud_sprite.source)
 
     for city_sprite in @city_layer.children
-      @.updateViewportPosition(city_sprite, city_sprite.city)
+      @.updateViewportPosition(city_sprite, city_sprite.source)
 
     for pirate_sprite in @pirate_layer.children
-      if (pirate_sprite.pirate.speedX != 0 or pirate_sprite.pirate.speedY != 0) and pirate_sprite.mode != 'fly'
+      if (pirate_sprite.source.speedX != 0 or pirate_sprite.source.speedY != 0) and pirate_sprite.mode != 'fly'
         @pirate_layer.removeChild(pirate_sprite)
-        pirate_sprite = @.createPirateSprite(pirate_sprite.pirate, 'fly')
+        pirate_sprite = @.createPirateSprite(pirate_sprite.source, 'fly')
         @pirate_layer.addChild(pirate_sprite)
-      else if (pirate_sprite.pirate.speedX == 0 and pirate_sprite.pirate.speedY == 0) and pirate_sprite.mode != 'standby'
+      else if (pirate_sprite.source.speedX == 0 and pirate_sprite.source.speedY == 0) and pirate_sprite.mode != 'standby'
         @pirate_layer.removeChild(pirate_sprite)
-        pirate_sprite = @.createPirateSprite(pirate_sprite.pirate, 'standby')
+        pirate_sprite = @.createPirateSprite(pirate_sprite.source, 'standby')
         @pirate_layer.addChild(pirate_sprite)
 
-      if pirate_sprite.pirate.direction == 'left'
+      if pirate_sprite.source.direction == 'left'
         pirate_sprite.scale.x = -1
       else
         pirate_sprite.scale.x = 1
 
-      @.updateViewportPosition(pirate_sprite, pirate_sprite.pirate)
+      @.updateViewportPosition(pirate_sprite, pirate_sprite.source)
 
     for bullet_sprite in @bullet_layer.children
-      @.updateViewportPosition(bullet_sprite, bullet_sprite.bullet)
+      @.updateViewportPosition(bullet_sprite, bullet_sprite.source)
 
 
     @explosion_layer.removeChild(sprite) for sprite in _.select(@explosion_layer.children, (s)-> s.remove_at < Date.now())
@@ -226,30 +229,36 @@ window.MapAnimator = class extends Animator
     sprite.scale.y = cloud.size * 0.9 + 0.3
     sprite.alpha = cloud.size * 0.8
     sprite.position = new PIXI.Point(cloud.x, cloud.y)
-    sprite.cloud = cloud
+    sprite.source = cloud
     sprite
 
   createCitySprite: (city)->
     sprite = PIXI.Sprite.fromFrame('city.png')
     sprite.anchor = new PIXI.Point(0.5, 0.5)
     sprite.position = new PIXI.Point(city.x, city.y)
-    sprite.city = city
+    sprite.source = city
     sprite
 
+  createStationSprite: (station)->
+    sprite = PIXI.Sprite.fromFrame('station.png')
+    sprite.anchor = new PIXI.Point(0.5, 0.5)
+    sprite.position = new PIXI.Point(station.x, station.y)
+    sprite.source = station
+    sprite
 
   createPirateSprite: (pirate, mode)->
     sprite = new PIXI.MovieClip(@.loops["pirate_#{ mode }"].textures)
     sprite.mode = mode
     sprite.anchor = new PIXI.Point(0.5, 0.5)
     sprite.position = new PIXI.Point(pirate.x, pirate.y)
-    sprite.pirate = pirate
+    sprite.source = pirate
     sprite
 
   createBulletSprite: (bullet)->
     sprite = PIXI.Sprite.fromFrame('bullet.png')
     sprite.anchor = new PIXI.Point(0.5, 0.5)
     sprite.position = new PIXI.Point(bullet.x, bullet.y)
-    sprite.bullet = bullet
+    sprite.source = bullet
     sprite
 
   createBulletHitSprite: (bullet)->

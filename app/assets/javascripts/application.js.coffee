@@ -109,6 +109,11 @@ window.stockAmountRanges = {
 window.refuelCost = 5
 window.repairCost = 1
 
+window.shipUpgrades = {
+  sparrow:  [Ship.Sparrow, 500],
+  hawk:     [Ship.Hawk, 1000]
+}
+
 Math.hypo = (a, b)->
   Math.sqrt(a * a + b * b)
 

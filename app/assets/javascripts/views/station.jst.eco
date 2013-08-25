@@ -1,0 +1,44 @@
+<div class="content">
+  <table class="trading">
+    <tr>
+      <th>Ship</th>
+      <th>Price</th>
+    </tr>
+
+    <% for item in @.upgradePrices(): %>
+      <tr>
+        <td><%= item.name %></td>
+
+        <% if item.current: %>
+          <td colspan="2">
+            <%= I18n.t("game.station.current_ship") %>
+          </td>
+        <% else: %>
+          <td><%= item.price %></td>
+          <td>
+            <% if @ship.money >= item.price: %>
+              <button class="buy" data-type="<%= item.type %>">Buy</button>
+            <% end %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+
+  <div class="ship_status">
+    Your money: <%= @ship.money %><br>
+    Cargo: <%= @ship.totalCargo() %> / <%= @ship.maxCargo %><br>
+    Fuel: <%= @ship.fuel %> / <%= @ship.maxFuel %><br>
+    Health: <%= @ship.health %> / <%= @ship.maxHealth %><br>
+
+    <% if @ship.fuel < @ship.maxFuel: %>
+      <button class="refuel ">Refuel</button>
+    <% end %>
+
+    <% if @ship.health < @ship.maxHealth: %>
+      <button class="repair">Repair</button>
+    <% end %>
+  </div>
+</div>
+
+<button class="close"></button>
