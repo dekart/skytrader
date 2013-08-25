@@ -1,4 +1,6 @@
 <div class="content">
+  <p><%=@safe I18n.t("game.station.description") %></p>
+
   <table class="trading">
     <tr>
       <th>Ship</th>
@@ -26,10 +28,12 @@
   </table>
 
   <div class="ship_status">
-    Your money: <%= @ship.money %><br>
-    Cargo: <%= @ship.totalCargo() %> / <%= @ship.maxCargo %><br>
-    Fuel: <%= @ship.fuel %> / <%= @ship.maxFuel %><br>
-    Health: <%= @ship.health %> / <%= @ship.maxHealth %><br>
+    <strong>Your Ship:</strong>
+
+    <div class="money"><%= @ship.money %></div>
+    <div class="cargo"><%= @ship.totalCargo() %> / <%= @ship.maxCargo %></div>
+    <div class="fuel"><%= @ship.fuel %> / <%= @ship.maxFuel %></div>
+    <div class="health"><%= @ship.health %> / <%= @ship.maxHealth %></div>
 
     <% if @ship.fuel < @ship.maxFuel: %>
       <button class="refuel ">Refuel</button>

@@ -13,7 +13,7 @@
 
     <% for item, price of @city.prices: %>
       <tr>
-        <td><%= item %></td>
+        <td><%= I18n.t("game.resources.#{ item }") %></td>
         <td><%= price %></td>
         <td><%= @city.stock[item] %></td>
         <td><%= @ship.cargo[item] || 0 %></td>

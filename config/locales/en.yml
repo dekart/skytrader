@@ -24,6 +24,14 @@ en:
     name: "My Game"
     description: "My super game made for fun and profit"
 
+    resources:
+      food: "Food"
+      ore: "Ore"
+      machines: "Machines"
+      goods: "Goods"
+      luxury: "Luxury"
+      books: "Books"
+
     city:
       description:
         agro: "This is <b>agricultural</b> city. It produces lots of <b>food</b> and <b>ore</b> which means they're cheapest here."
@@ -40,4 +48,5 @@ en:
       hawk: "Hawk"
 
     station:
+      description: "This is <b>Sky Guild Station</b>. You can buy new ships here."
       current_ship: "This is your current ship"
