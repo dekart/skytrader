@@ -29,8 +29,12 @@ window.DeathScreenController = class extends BaseController
       @.renderTemplate('death_screen')
     )
 
+  close: ->
+    document.location = document.location
+
   setupEventListeners: ->
     @el.on('click', '.restart', @.onRestartClick)
+    @el.on('click', '.close', @.onRestartClick)
 
   onRestartClick: (e)=>
-    document.location = document.location
+    @.close()
