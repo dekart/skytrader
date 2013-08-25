@@ -15,11 +15,11 @@ window.Bullet = class extends FlyingObject
 
     @speedX = Math.sqrt(
       Math.pow(@.maxSpeed, 2) / (1 + Math.pow(dy / dx , 2) )
-    ) * (dx / Math.abs(dx))
+    ) * Math.sign(dx)
 
     @speedY = Math.sqrt(
       Math.pow(@.maxSpeed, 2) / (1 + Math.pow(dx / dy , 2) )
-    ) * (dy / Math.abs(dy))
+    ) * Math.sign(dy)
 
     @shot_at = Date.now()
 

@@ -117,6 +117,12 @@ window.shipUpgrades = {
 Math.hypo = (a, b)->
   Math.sqrt(a * a + b * b)
 
+Math.sign = (value)->
+  if value == 0
+    1
+  else
+    value / Math.abs(value)
+
 window.Application = class
   start: ->
     $('#preloader').hide()

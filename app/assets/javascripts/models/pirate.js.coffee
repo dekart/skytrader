@@ -27,12 +27,12 @@ window.Pirate = class extends FlyingObject
 
     if distance < @.detectionDistance
       if @controller.ship.x - @x != 0
-        @accelX = (@controller.ship.x - @x) / Math.abs(@controller.ship.x - @x)
+        @accelX = Math.sign(@controller.ship.x - @x)
       else
         @accelX = 0
 
       if @controller.ship.y - @y != 0
-        @accelY = (@controller.ship.y - @y) / Math.abs(@controller.ship.y - @y)
+        @accelY = Math.sign(@controller.ship.y - @y)
       else
         @accelY = 0
 

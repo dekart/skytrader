@@ -2,8 +2,7 @@
 
 window.MapAnimator = class extends Animator
   loops: # [StartFrame, EndFrame, Speed]
-    ship_standby:   {frames: [0,  0], speed: 0.3}
-    ship_fly:       {frames: [0,  0], speed: 0.3}
+    ship:           {frames: [0,  3], speed: 0.3}
     pirate_standby: {frames: [0,  0], speed: 0.3}
     pirate_fly:     {frames: [0,  0], speed: 0.3}
     bullet_hit:     {frames: [0,  2], speed: 0.2}
@@ -125,17 +124,14 @@ window.MapAnimator = class extends Animator
   updateSpriteStates: ->
     return unless @sprites_added
 
-    if (@controller.ship.speedX != 0 or @controller.ship.speedY != 0) and @ship_sprite.mode != 'fly'
-      @ship_layer.removeChild(@ship_sprite)
-      @ship_sprite = @.createShipSprite('fly')
-      @ship_layer.addChild(@ship_sprite)
-    else if (@controller.ship.speedX == 0 and @controller.ship.speedY == 0) and @ship_sprite.mode != 'standby'
-      @ship_layer.removeChild(@ship_sprite)
-      @ship_sprite = @.createShipSprite('standby')
-      @ship_layer.addChild(@ship_sprite)
+    if (@controller.ship.speedX != 0 or @controller.ship.speedY != 0)
+      @ship_sprite.rotation = 20 * Math.PI/ 180 * @controller.ship.totalSpeed() / @controller.ship.maxSpeed
+    else if (@controller.ship.speedX == 0 and @controller.ship.speedY == 0)
+      @ship_sprite.rotation = 0
 
     if @controller.ship.direction == 'left'
       @ship_sprite.scale.x = -1
+      @ship_sprite.rotation *= -1
     else
       @ship_sprite.scale.x = 1
 
@@ -214,11 +210,10 @@ window.MapAnimator = class extends Animator
       @controller.mouse_position[1] + @viewport.y
     )
 
-  createShipSprite: (mode)->
-    sprite = new PIXI.MovieClip(@.loops["ship_#{ mode }"].textures)
-    sprite.mode = mode
+  createShipSprite: ->
+    sprite = new PIXI.MovieClip(@.loops.ship.textures)
     sprite.anchor = new PIXI.Point(0.5, 0.5)
-    sprite.animationSpeed = @.loops["ship_#{ mode }"].speed
+    sprite.animationSpeed = @.loops.ship.speed
     sprite.play()
     sprite
 

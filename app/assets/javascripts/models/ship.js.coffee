@@ -43,7 +43,7 @@ window.Ship = class extends FlyingObject
     1 - (Date.now() - @fuel_reduced_at) / tenSeconds
 
   canDock: ->
-    Math.abs(@speedX) < 0.3 and Math.abs(@speedY) < 0.3
+    @.totalSpeed() < @.maxSpeed / 3
 
   dock: ->
     @docked = true

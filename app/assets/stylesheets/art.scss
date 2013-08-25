@@ -108,7 +108,7 @@
 }
 
 @function sprite_position_pirate_fly_0000(){
-  @return -54px -206px;
+  @return -2px -258px;
 }
 @mixin sprite_pirate_fly_0000($width: 50px, $height: 50px) {
   width: $width;
@@ -121,7 +121,7 @@
 }
 
 @function sprite_position_pirate_standby_0000(){
-  @return -2px -206px;
+  @return -158px -206px;
 }
 @mixin sprite_pirate_standby_0000($width: 50px, $height: 50px) {
   width: $width;
@@ -133,29 +133,68 @@
   }
 }
 
-@function sprite_position_ship_fly_0000(){
-  @return -54px -154px;
+@function sprite_position_pirate_standby_0001(){
+  @return -106px -206px;
 }
-@mixin sprite_ship_fly_0000($width: 50px, $height: 50px) {
+@mixin sprite_pirate_standby_0001($width: 50px, $height: 50px) {
   width: $width;
   height: $height;
   background: {
     repeat: no-repeat;
     image: sprite_image_url();
-    position: sprite_position_ship_fly_0000();
+    position: sprite_position_pirate_standby_0001();
   }
 }
 
-@function sprite_position_ship_standby_0000(){
-  @return -2px -154px;
+@function sprite_position_ship_0000(){
+  @return -54px -206px;
 }
-@mixin sprite_ship_standby_0000($width: 50px, $height: 50px) {
+@mixin sprite_ship_0000($width: 50px, $height: 50px) {
   width: $width;
   height: $height;
   background: {
     repeat: no-repeat;
     image: sprite_image_url();
-    position: sprite_position_ship_standby_0000();
+    position: sprite_position_ship_0000();
+  }
+}
+
+@function sprite_position_ship_0001(){
+  @return -2px -206px;
+}
+@mixin sprite_ship_0001($width: 50px, $height: 50px) {
+  width: $width;
+  height: $height;
+  background: {
+    repeat: no-repeat;
+    image: sprite_image_url();
+    position: sprite_position_ship_0001();
+  }
+}
+
+@function sprite_position_ship_0002(){
+  @return -54px -154px;
+}
+@mixin sprite_ship_0002($width: 50px, $height: 50px) {
+  width: $width;
+  height: $height;
+  background: {
+    repeat: no-repeat;
+    image: sprite_image_url();
+    position: sprite_position_ship_0002();
+  }
+}
+
+@function sprite_position_ship_0003(){
+  @return -2px -154px;
+}
+@mixin sprite_ship_0003($width: 50px, $height: 50px) {
+  width: $width;
+  height: $height;
+  background: {
+    repeat: no-repeat;
+    image: sprite_image_url();
+    position: sprite_position_ship_0003();
   }
 }
 
