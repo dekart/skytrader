@@ -5,6 +5,7 @@ window.MapAnimator = class extends Animator
     ship:       {frames: [0,  3], speed: 0.3}
     pirate:     {frames: [0,  3], speed: 0.3}
     city:       {frames: [0,  1], speed: 0.3}
+    station:    {frames: [0,  1], speed: 0.2}
     bullet_hit: {frames: [0,  2], speed: 0.2}
 
   constructor: (controller)->
@@ -234,7 +235,9 @@ window.MapAnimator = class extends Animator
     sprite
 
   createStationSprite: (station)->
-    sprite = PIXI.Sprite.fromFrame('station.png')
+    sprite = new PIXI.MovieClip(@.loops.station.textures)
+    sprite.animationSpeed = @.loops.station.speed
+    sprite.play()
     sprite.anchor = new PIXI.Point(0.5, 0.5)
     sprite.position = new PIXI.Point(station.x, station.y)
     sprite.source = station
