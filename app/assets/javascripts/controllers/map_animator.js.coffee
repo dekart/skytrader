@@ -151,6 +151,12 @@ window.MapAnimator = class extends Animator
     for city_sprite in @city_layer.children
       @.updateViewportPosition(city_sprite, city_sprite.source)
 
+      city_sprite.anchor.y = 0.5 + 0.1 * (
+        1 - Math.sin(
+          Date.now() / 1000 + city_sprite.source.x + city_sprite.source.y
+        )
+      )
+
     for pirate_sprite in @pirate_layer.children
       if (pirate_sprite.source.speedX != 0 or pirate_sprite.source.speedY != 0)
         pirate_sprite.rotation = 20 * Math.PI/ 180 * pirate_sprite.source.totalSpeed() / pirate_sprite.source.maxSpeed
