@@ -49,30 +49,30 @@ window.stockPrices = {
 
 window.stockPriceRanges = {
   agro: {
-    food:     [0, 0.3]
-    ore:      [0, 0.3]
-    machines: [0.7, 1]
-    goods:    [0.3, 0.7]
-    luxury:   [0.3, 0.7]
-    books:    [0.7, 1]
+    food:     [0, 0.5]
+    ore:      [0, 0.5]
+    machines: [0.5, 1]
+    goods:    [0.25, 0.75]
+    luxury:   [0.25, 0.75]
+    books:    [0.5, 1]
   }
 
   industry: {
-    food:     [0.3, 0.7]
-    ore:      [0.7, 1]
-    machines: [0, 0.3]
-    goods:    [0, 0.3]
-    luxury:   [0.7, 1]
-    books:    [0.3, 0.7]
+    food:     [0.25, 0.75]
+    ore:      [0.5, 1]
+    machines: [0, 0.5]
+    goods:    [0, 0.5]
+    luxury:   [0.5, 1]
+    books:    [0.25, 0.75]
   }
 
   culture: {
-    food:     [0.7, 1]
-    ore:      [0.3, 0.7]
-    machines: [0.3, 0.7]
-    goods:    [0.7, 1]
-    luxury:   [0, 0.3]
-    books:    [0, 0.3]
+    food:     [0.5, 1]
+    ore:      [0.25, 0.75]
+    machines: [0.25, 0.75]
+    goods:    [0.5, 1]
+    luxury:   [0, 0.5]
+    books:    [0, 0.5]
   }
 }
 
