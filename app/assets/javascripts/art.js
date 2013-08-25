@@ -114,7 +114,21 @@ var artSprite = {
     "sourceSize": {"w":15,"h":15}
   }, 
 
-  "pirate_fly_0000.png":
+  "pirate_0000.png":
+  {
+    "frame": {"x":2,"y":310,"w":50,"h":50},
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": {
+      "x":0,
+      "y":0,
+      "w":50,
+      "h":50
+    },
+    "sourceSize": {"w":50,"h":50}
+  }, 
+
+  "pirate_0001.png":
   {
     "frame": {"x":2,"y":258,"w":50,"h":50},
     "rotated": false,
@@ -128,7 +142,7 @@ var artSprite = {
     "sourceSize": {"w":50,"h":50}
   }, 
 
-  "pirate_standby_0000.png":
+  "pirate_0002.png":
   {
     "frame": {"x":158,"y":206,"w":50,"h":50},
     "rotated": false,
@@ -142,7 +156,7 @@ var artSprite = {
     "sourceSize": {"w":50,"h":50}
   }, 
 
-  "pirate_standby_0001.png":
+  "pirate_0003.png":
   {
     "frame": {"x":106,"y":206,"w":50,"h":50},
     "rotated": false,

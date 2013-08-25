@@ -2,10 +2,9 @@
 
 window.MapAnimator = class extends Animator
   loops: # [StartFrame, EndFrame, Speed]
-    ship:           {frames: [0,  3], speed: 0.3}
-    pirate_standby: {frames: [0,  0], speed: 0.3}
-    pirate_fly:     {frames: [0,  0], speed: 0.3}
-    bullet_hit:     {frames: [0,  2], speed: 0.2}
+    ship:       {frames: [0,  3], speed: 0.3}
+    pirate:     {frames: [0,  3], speed: 0.3}
+    bullet_hit: {frames: [0,  2], speed: 0.2}
 
   constructor: (controller)->
     super(controller)
@@ -79,7 +78,7 @@ window.MapAnimator = class extends Animator
       @city_layer.addChild(@.createStationSprite(station))
 
     for pirate in @controller.pirates
-      @pirate_layer.addChild(@.createPirateSprite(pirate, 'standby'))
+      @pirate_layer.addChild(@.createPirateSprite(pirate))
 
     @sprites_added = true
 
@@ -144,17 +143,14 @@ window.MapAnimator = class extends Animator
       @.updateViewportPosition(city_sprite, city_sprite.source)
 
     for pirate_sprite in @pirate_layer.children
-      if (pirate_sprite.source.speedX != 0 or pirate_sprite.source.speedY != 0) and pirate_sprite.mode != 'fly'
-        @pirate_layer.removeChild(pirate_sprite)
-        pirate_sprite = @.createPirateSprite(pirate_sprite.source, 'fly')
-        @pirate_layer.addChild(pirate_sprite)
-      else if (pirate_sprite.source.speedX == 0 and pirate_sprite.source.speedY == 0) and pirate_sprite.mode != 'standby'
-        @pirate_layer.removeChild(pirate_sprite)
-        pirate_sprite = @.createPirateSprite(pirate_sprite.source, 'standby')
-        @pirate_layer.addChild(pirate_sprite)
+      if (pirate_sprite.source.speedX != 0 or pirate_sprite.source.speedY != 0)
+        pirate_sprite.rotation = 20 * Math.PI/ 180 * pirate_sprite.source.totalSpeed() / pirate_sprite.source.maxSpeed
+      else if (pirate_sprite.source.speedX == 0 and pirate_sprite.source.speedY == 0)
+        pirate_sprite.rotation = 0
 
       if pirate_sprite.source.direction == 'left'
         pirate_sprite.scale.x = -1
+        pirate_sprite.rotation *= -1
       else
         pirate_sprite.scale.x = 1
 
@@ -241,11 +237,12 @@ window.MapAnimator = class extends Animator
     sprite.source = station
     sprite
 
-  createPirateSprite: (pirate, mode)->
-    sprite = new PIXI.MovieClip(@.loops["pirate_#{ mode }"].textures)
-    sprite.mode = mode
+  createPirateSprite: (pirate)->
+    sprite = new PIXI.MovieClip(@.loops.pirate.textures)
     sprite.anchor = new PIXI.Point(0.5, 0.5)
     sprite.position = new PIXI.Point(pirate.x, pirate.y)
+    sprite.animationSpeed = @.loops.ship.speed
+    sprite.play()
     sprite.source = pirate
     sprite
 
