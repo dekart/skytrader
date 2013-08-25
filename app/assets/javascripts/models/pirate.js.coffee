@@ -60,3 +60,7 @@ window.Pirate = class extends FlyingObject
 
     if @health < 0
       @controller.removePirate(@)
+
+      @controller.addBonus(
+        new Bonus(@controller, @x, @y)
+      )

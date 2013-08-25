@@ -57,6 +57,10 @@ window.Ship = class extends FlyingObject
     total += amount for item, amount of @cargo
     total
 
+  giveCargo: (type, amount)->
+    @cargo[type] ?= 0
+    @cargo[type] += amount
+
   buyCargo: (type, city)->
     if @.totalCargo() >= @.maxCargo
       'not_enough_space'
@@ -65,8 +69,7 @@ window.Ship = class extends FlyingObject
     else
       @money -= city.prices[type]
 
-      @cargo[type] ?= 0
-      @cargo[type] += 1
+      @.giveCargo(type, 1)
 
       city.stock[type] -= 1
 
@@ -136,3 +139,11 @@ window.Ship = class extends FlyingObject
       new_ship.y = @y
 
       [true, new_ship]
+
+  collectBonus: (bonus)->
+    if @.totalCargo() < @.maxCargo
+      @.giveCargo(_.shuffle(_.keys(stockPrices))[0], 1)
+    else if @fuel < @.maxFuel
+      @fuel += 1
+    else
+      @money += _.random(5, 25)

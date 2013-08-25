@@ -19,10 +19,11 @@ window.MapController = class extends BaseController
 
     @bullets = []
 
+    @bonuses = []
+
     @animator = new MapAnimator(@)
 
     @mouse_position = [@ship.x + 100, @ship.y]
-
 
   show: ->
     @.setupEventListeners()
@@ -121,6 +122,21 @@ window.MapController = class extends BaseController
 
     @animator.removePirate(pirate)
 
+  addBonus: (bonus)->
+    @bonuses.push(bonus)
+
+    @animator.addBonus(bonus)
+
+  removeBonus: (bonus)->
+    new_bonuses = []
+
+    for b in @bonuses
+      new_bonuses.push(b) if b != bonus
+
+    @bonuses = new_bonuses
+
+    @animator.removeBonus(bonus)
+
   updateState: ->
     @ship.updateState()
 
@@ -129,6 +145,8 @@ window.MapController = class extends BaseController
     pirate.updateState() for pirate in @pirates
 
     bullet.updateState() for bullet in @bullets
+
+    bonus.updateState() for bonus in @bonuses
 
     @.removeBullet(bullet) for bullet in _.select(@bullets, (b)-> b.remove == true )
 

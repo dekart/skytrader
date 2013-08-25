@@ -1,8 +1,6 @@
 #= require ./flying_object
 
 window.Bullet = class extends FlyingObject
-  @include Spine.Events
-
   maxSpeed: 6
   lifetime: 1000
   damage: 1

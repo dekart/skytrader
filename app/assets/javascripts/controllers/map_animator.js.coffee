@@ -15,6 +15,7 @@ window.MapAnimator = class extends Animator
 
     @background_layer = new PIXI.DisplayObjectContainer()
     @city_layer = new PIXI.DisplayObjectContainer()
+    @bonus_layer = new PIXI.DisplayObjectContainer()
     @ship_layer = new PIXI.DisplayObjectContainer()
     @cloud_layer = new PIXI.DisplayObjectContainer()
     @pirate_layer = new PIXI.DisplayObjectContainer()
@@ -24,6 +25,7 @@ window.MapAnimator = class extends Animator
 
     @stage.addChild(@background_layer)
     @stage.addChild(@city_layer)
+    @stage.addChild(@bonus_layer)
     @stage.addChild(@ship_layer)
     @stage.addChild(@cloud_layer)
     @stage.addChild(@pirate_layer)
@@ -106,6 +108,12 @@ window.MapAnimator = class extends Animator
   removePirate: (pirate)->
     @pirate_layer.removeChild(_.find(@pirate_layer.children, (c)=> c.source.id == pirate.id))
 
+  addBonus: (bonus)->
+    @bonus_layer.addChild(@.createBonusSprite(bonus))
+
+  removeBonus: (bonus)->
+    @bonus_layer.removeChild(_.find(@bonus_layer.children, (c)=> c.source.id == bonus.id))
+
   animate: =>
     unless @paused_at
       @controller.updateState()
@@ -175,6 +183,10 @@ window.MapAnimator = class extends Animator
     for bullet_sprite in @bullet_layer.children
       @.updateViewportPosition(bullet_sprite, bullet_sprite.source)
 
+    for bonus_sprite in @bonus_layer.children
+      @.updateViewportPosition(bonus_sprite, bonus_sprite.source)
+
+      bonus_sprite.rotation = 15 * Math.sin(Date.now() / 500) * Math.PI/ 180
 
     @explosion_layer.removeChild(sprite) for sprite in _.select(@explosion_layer.children, (s)-> s.remove_at < Date.now())
 
@@ -277,6 +289,13 @@ window.MapAnimator = class extends Animator
     sprite.anchor = new PIXI.Point(0.5, 0.5)
     sprite.position = new PIXI.Point(bullet.x, bullet.y)
     sprite.source = bullet
+    sprite
+
+  createBonusSprite: (bonus)->
+    sprite = PIXI.Sprite.fromFrame('bonus.png')
+    sprite.anchor = new PIXI.Point(0.5, 0)
+    sprite.position = new PIXI.Point(bonus.x, bonus.y)
+    sprite.source = bonus
     sprite
 
   createBulletHitSprite: (bullet)->
