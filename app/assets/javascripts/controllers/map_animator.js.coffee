@@ -204,7 +204,7 @@ window.MapAnimator = class extends Animator
 
   updateHealthProgress: ->
     @health_progress.clear()
-    @health_progress.beginFill(0xdd0000, 1)
+    @health_progress.beginFill(0xdd5050, 1)
     @health_progress.drawRect(0, 0, 75 * @controller.ship.healthPercent(), 5)
     @health_progress.endFill()
 
