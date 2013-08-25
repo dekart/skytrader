@@ -77,7 +77,7 @@ window.StationController = class extends BaseController
     result = @map.ship.buyUpgrade(type)
 
     if result[0] == true
-      @map.ship = result[1]
+      @map.changeShip(result[1])
 
       @.render()
     else

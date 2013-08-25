@@ -2,7 +2,8 @@
 
 window.MapAnimator = class extends Animator
   loops: # [StartFrame, EndFrame, Speed]
-    ship:       {frames: [0,  3], speed: 0.3}
+    ship_sparrow:       {frames: [0,  3], speed: 0.3}
+    ship_hawk:       {frames: [0,  3], speed: 0.3}
     pirate:     {frames: [0,  3], speed: 0.3}
     city:       {frames: [0,  1], speed: 0.3}
     station:    {frames: [0,  1], speed: 0.2}
@@ -215,9 +216,16 @@ window.MapAnimator = class extends Animator
       @controller.mouse_position[1] + @viewport.y
     )
 
+  changeShipSprite: ->
+    @ship_layer.removeChild(@ship_sprite)
+
+    @ship_sprite = @.createShipSprite()
+
+    @ship_layer.addChild(@ship_sprite)
+
   createShipSprite: ->
-    sprite = new PIXI.MovieClip(@.loops.ship.textures)
-    sprite.animationSpeed = @.loops.ship.speed
+    sprite = new PIXI.MovieClip(@.loops["ship_#{ @controller.ship.type }"].textures)
+    sprite.animationSpeed = @.loops["ship_#{ @controller.ship.type }"].speed
     sprite.play()
     sprite.anchor = new PIXI.Point(0.5, 0.5)
     sprite
@@ -252,7 +260,7 @@ window.MapAnimator = class extends Animator
 
   createPirateSprite: (pirate)->
     sprite = new PIXI.MovieClip(@.loops.pirate.textures)
-    sprite.animationSpeed = @.loops.ship.speed
+    sprite.animationSpeed = @.loops.pirate.speed
     sprite.play()
     sprite.anchor = new PIXI.Point(0.5, 0.5)
     sprite.position = new PIXI.Point(pirate.x, pirate.y)

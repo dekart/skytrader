@@ -136,3 +136,8 @@ window.MapController = class extends BaseController
     @animator.deactivate()
 
     DeathScreenController.show()
+
+  changeShip: (ship)->
+    @ship = ship
+
+    @animator.changeShipSprite()

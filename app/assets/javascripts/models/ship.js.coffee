@@ -118,7 +118,7 @@ window.Ship = class extends FlyingObject
       true
 
   price: ->
-    _.find(_.pairs(window.shipUpgrades), ([k, v])=> v[0] == @.constructor )[1][1]
+    window.shipUpgrades[@.type][1]
 
   buyUpgrade: (type)->
     price = window.shipUpgrades[type][1] - @.price() / 2
