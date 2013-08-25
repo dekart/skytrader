@@ -43,8 +43,42 @@
   .content {
     .ship_status {
       position: absolute;
-      top: 0;
+      top: 100px;
       right: 0;
+      width: 100px;
+      text-align: left;
+
+      .money, .cargo, .fuel, .health {
+        padding-left: 13px;
+        background-position: left;
+        background-repeat: no-repeat;
+      }
+      .money {
+        background-image: image-url('art/money.png');
+      }
+      .cargo {
+        background-image: image-url('art/cargo.png');
+      }
+      .fuel {
+        background-image: image-url('art/fuel.png');
+      }
+      .health {
+        background-image: image-url('art/health.png');
+      }
+    }
+
+    .trading {
+      position: absolute;
+      top: 100px;
+      left: 0px;
+
+      border-collapse: collapse;
+      border-spacing: 0;
+
+      td, th {
+        border: 1px solid #B1A161;
+        padding: 5px;
+      }
     }
   }
 }

@@ -1,5 +1,7 @@
 <div class="content">
-  Type: <%= @city.type %><br>
+  <p>
+    <%=@safe I18n.t("game.city.description.#{ @city.type }") %>
+  </p>
 
   <table class="trading">
     <tr>
@@ -14,13 +16,12 @@
         <td><%= item %></td>
         <td><%= price %></td>
         <td><%= @city.stock[item] %></td>
-        <td><%= @ship.cargo[item] %></td>
+        <td><%= @ship.cargo[item] || 0 %></td>
         <td>
           <% if @city.stock[item] > 0: %>
             <button class="buy" data-type="<%= item %>">Buy</button>
           <% end %>
-        </td>
-        <td>
+
           <% if @ship.cargo[item] > 0: %>
             <button class="sell" data-type="<%= item %>">Sell</button>
           <% end %>
@@ -30,10 +31,12 @@
   </table>
 
   <div class="ship_status">
-    Your money: <%= @ship.money %><br>
-    Cargo: <%= @ship.totalCargo() %> / <%= @ship.maxCargo %><br>
-    Fuel: <%= @ship.fuel %> / <%= @ship.maxFuel %><br>
-    Health: <%= @ship.health %> / <%= @ship.maxHealth %><br>
+    <strong>Your Ship:</strong>
+
+    <div class="money"><%= @ship.money %></div>
+    <div class="cargo"><%= @ship.totalCargo() %> / <%= @ship.maxCargo %></div>
+    <div class="fuel"><%= @ship.fuel %> / <%= @ship.maxFuel %></div>
+    <div class="health"><%= @ship.health %> / <%= @ship.maxHealth %></div>
 
     <% if @ship.fuel < @ship.maxFuel: %>
       <button class="refuel ">Refuel</button>

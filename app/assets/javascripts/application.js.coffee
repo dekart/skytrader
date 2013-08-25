@@ -8,7 +8,6 @@
 #= require spine
 
 #= require i18n
-#= require i18n/translations
 
 #= require soundmanager2
 #= require sounds

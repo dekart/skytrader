@@ -55,6 +55,19 @@
   }
 }
 
+@function sprite_position_cargo(){
+  @return -138px -198px;
+}
+@mixin sprite_cargo($width: 10px, $height: 10px) {
+  width: $width;
+  height: $height;
+  background: {
+    repeat: no-repeat;
+    image: sprite_image_url();
+    position: sprite_position_cargo();
+  }
+}
+
 @function sprite_position_city_0000(){
   @return -104px -240px;
 }

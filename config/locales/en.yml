@@ -25,6 +25,11 @@ en:
     description: "My super game made for fun and profit"
 
     city:
+      description:
+        agro: "This is <b>agricultural</b> city. It produces lots of <b>food</b> and <b>ore</b> which means they're cheapest here."
+        industry: "This is <b>industrial</b> city. You cannot find <b>machines</b> and <b>goods</b> cheaper."
+        culture: "This is <b>cultural</b> city. Clever people write <b>books</b> and <b>luxury</b> here, best prices for that kind of stuff."
+
       errors:
         not_enough_money: "You don't have enough money"
         not_enough_space: "Your cargo bay is full"

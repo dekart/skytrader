@@ -58,6 +58,20 @@ var artSprite = {
     "sourceSize": {"w":15,"h":15}
   }, 
 
+  "cargo.png":
+  {
+    "frame": {"x":138,"y":198,"w":10,"h":10},
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": {
+      "x":0,
+      "y":0,
+      "w":10,
+      "h":10
+    },
+    "sourceSize": {"w":10,"h":10}
+  }, 
+
   "city_0000.png":
   {
     "frame": {"x":104,"y":240,"w":100,"h":100},

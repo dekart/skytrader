@@ -84,5 +84,14 @@
   </div>
 
   <%= javascript_include_tag "application" %>
+
+  <%= javascript_tag do %>
+    var I18n = I18n || {};
+    I18n.translations = <%=
+      SimplesIdeias::I18n.translation_segments.each_with_object({}) do |(name, segment),translations|
+        translations.merge!(segment)
+      end.to_json.html_safe
+    %>;
+  <% end %>
 </body>
 </html>
