@@ -1,7 +1,24 @@
 <button class="close"></button>
 
 <div class="content">
-  You're now dead
+  <p>You're now dead. But no worries, you can perform better with after a short instruction.</p>
+
+  <strong>How to Play:</strong>
+
+  <ul>
+    <li>Control your ship with ARROWS or AWSD</li>
+    <li>Aim & shoot with mouse</li>
+    <li>Press ENTER to dock on stations</li>
+    <li>Buy & sell goods for profits. Different cities produce and consume different stuff.</li>
+    <li>Don't forget to refuel - each fuel can lasts <b>only 10 seconds</b></li>
+    <li>Buy new ships for better performance and cargo capacity  </li>
+  </ul>
+
+  <% if @map.ship.fuel == 0: %>
+    <p>This time you died because you <b>ran out of fuel</b>. Make sure to refuel every time you dock.</p>
+  <% else: %>
+    <p>This time pirates <b>killed you</b>. Don't forget to repair your ship.</p>
+  <% end %>
 
   <button class="restart">Restart</button>
 </div>

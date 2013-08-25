@@ -201,21 +201,19 @@ window.MapAnimator = class extends Animator
 
     for i in [0 .. @controller.ship.fuel - 1]
       if @fuel_progress.children[i]
-        @fuel_progress.children[i].scale = new PIXI.Point(1, 1)
+        @fuel_progress.children[i].alpha = 1
       else
         sprite = PIXI.Sprite.fromFrame('fuel.png')
         sprite.position.x = i * (sprite.width + 2)
         sprite.anchor.y = 1
+        sprite.blendMode = PIXI.blendModes.SCREEN
         @fuel_progress.addChild(sprite)
 
     while @fuel_progress.children.length > @controller.ship.fuel
       @fuel_progress.removeChild(@fuel_progress.children[@fuel_progress.children.length - 1])
 
     if @fuel_progress.children.length > 0
-      @fuel_progress.children[@fuel_progress.children.length - 1].scale = new PIXI.Point(
-        @controller.ship.fuelExhaustion(),
-        @controller.ship.fuelExhaustion()
-      )
+      @fuel_progress.children[@fuel_progress.children.length - 1].alpha = @controller.ship.fuelExhaustion()
 
   updateCursorPosition: ->
     @cursor.position = @.viewportPosition(

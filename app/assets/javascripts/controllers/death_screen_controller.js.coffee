@@ -10,7 +10,7 @@ window.DeathScreenController = class extends BaseController
 
     @overlay = $("<div class='dialog_overlay'></div>")
 
-  show: ->
+  show: (@map)->
     @.setupEventListeners()
 
     @el.css(opacity: 0).appendTo('#game')
