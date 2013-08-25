@@ -4,6 +4,7 @@ window.MapAnimator = class extends Animator
   loops: # [StartFrame, EndFrame, Speed]
     ship:       {frames: [0,  3], speed: 0.3}
     pirate:     {frames: [0,  3], speed: 0.3}
+    city:       {frames: [0,  1], speed: 0.3}
     bullet_hit: {frames: [0,  2], speed: 0.2}
 
   constructor: (controller)->
@@ -208,9 +209,9 @@ window.MapAnimator = class extends Animator
 
   createShipSprite: ->
     sprite = new PIXI.MovieClip(@.loops.ship.textures)
-    sprite.anchor = new PIXI.Point(0.5, 0.5)
     sprite.animationSpeed = @.loops.ship.speed
     sprite.play()
+    sprite.anchor = new PIXI.Point(0.5, 0.5)
     sprite
 
   createCloudSprite: (cloud)->
@@ -224,7 +225,9 @@ window.MapAnimator = class extends Animator
     sprite
 
   createCitySprite: (city)->
-    sprite = PIXI.Sprite.fromFrame('city.png')
+    sprite = new PIXI.MovieClip(@.loops.city.textures)
+    sprite.animationSpeed = @.loops.city.speed
+    sprite.play()
     sprite.anchor = new PIXI.Point(0.5, 0.5)
     sprite.position = new PIXI.Point(city.x, city.y)
     sprite.source = city
@@ -239,10 +242,10 @@ window.MapAnimator = class extends Animator
 
   createPirateSprite: (pirate)->
     sprite = new PIXI.MovieClip(@.loops.pirate.textures)
-    sprite.anchor = new PIXI.Point(0.5, 0.5)
-    sprite.position = new PIXI.Point(pirate.x, pirate.y)
     sprite.animationSpeed = @.loops.ship.speed
     sprite.play()
+    sprite.anchor = new PIXI.Point(0.5, 0.5)
+    sprite.position = new PIXI.Point(pirate.x, pirate.y)
     sprite.source = pirate
     sprite
 
