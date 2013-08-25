@@ -1,23 +1,17 @@
-.station_dialog {
+.city_dialog, .station_dialog, .death_screen {
   position: absolute;
   top: 50px;
   left: 100px;
   width: 600px;
   height: 450px;
 
-  background-color: white;
+  background: image-url('dialog.png');
 
   .content {
     position: absolute;
     top: 15px;
     left: 15px;
     width: 530px;
-
-    .ship_status {
-      position: absolute;
-      top: 0;
-      right: 0;
-    }
   }
 
   .close {
@@ -28,6 +22,9 @@
     height: 30px;
     cursor: pointer;
     border: none;
+    margin: 0;
+    padding: 0;
+    background: none;
   }
 
   .error {
@@ -39,5 +36,15 @@
     color: #f0f0f0;
     text-align: center;
     padding: 5px 0;
+  }
+}
+
+.city_dialog, .station_dialog {
+  .content {
+    .ship_status {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
   }
 }

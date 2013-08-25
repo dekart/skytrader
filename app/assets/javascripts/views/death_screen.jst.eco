@@ -1,3 +1,5 @@
-You're now dead
+<div class="content">
+  You're now dead
 
-<button class="restart">Restart</button>
+  <button class="restart">Restart</button>
+</div>

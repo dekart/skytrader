@@ -45,6 +45,8 @@ window.MapController = class extends BaseController
     @animator.activate()
 
   onKeyDown: (e)=>
+    return if @ship.docked
+
     switch e.keyCode
       when 37, 65 # left
         @ship.accelX = -1
@@ -56,13 +58,11 @@ window.MapController = class extends BaseController
         @ship.accelY = 1
       when 13
         if @ship.canDock()
-          if not CityController.controller?.visible
-            for city in @cities
-              CityController.show(@, city) if city.canDock()
+          for city in @cities
+            CityController.show(@, city) if city.canDock()
 
-          if not StationController.controller?.visible
-            for station in @stations
-              StationController.show(@, station) if station.canDock()
+          for station in @stations
+            StationController.show(@, station) if station.canDock()
       else
         process_default = true
 
