@@ -1,8 +1,6 @@
 #= require ./flying_object
 
 window.Pirate = class extends FlyingObject
-  @include Spine.Events
-
   @generate: (controller)->
     new @(
       controller
@@ -14,6 +12,7 @@ window.Pirate = class extends FlyingObject
   detectionDistance: 200
   roundsPerSecond: 2
   maxHealth: 10
+  hitDistance: 20
 
   constructor: (controller, x, y)->
     super(controller, x, y)

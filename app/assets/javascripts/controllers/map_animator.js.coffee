@@ -5,7 +5,8 @@ window.MapAnimator = class extends Animator
     ship_sparrow:       {frames: [0,  3], speed: 0.3}
     ship_hawk:       {frames: [0,  3], speed: 0.3}
     ship_squacco:       {frames: [0,  3], speed: 0.3}
-    pirate:     {frames: [0,  3], speed: 0.3}
+    pirate_hawk:     {frames: [0,  3], speed: 0.3}
+    pirate_base:     {frames: [0,  3], speed: 0.3}
     city:       {frames: [0,  1], speed: 0.3}
     station:    {frames: [0,  1], speed: 0.2}
     bullet_hit: {frames: [0,  2], speed: 0.2}
@@ -276,8 +277,8 @@ window.MapAnimator = class extends Animator
     sprite
 
   createPirateSprite: (pirate)->
-    sprite = new PIXI.MovieClip(@.loops.pirate.textures)
-    sprite.animationSpeed = @.loops.pirate.speed
+    sprite = new PIXI.MovieClip(@.loops["pirate_#{ pirate.type }"].textures)
+    sprite.animationSpeed = @.loops["pirate_#{ pirate.type }"].speed
     sprite.play()
     sprite.anchor = new PIXI.Point(0.5, 0.5)
     sprite.position = new PIXI.Point(pirate.x, pirate.y)

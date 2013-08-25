@@ -15,7 +15,10 @@ window.MapController = class extends BaseController
 
     @stations = (Station.generate(@) for i in [1..10])
 
-    @pirates = (Pirate.generate(@) for i in [1..50])
+    @pirates = (Pirate.Hawk.generate(@) for i in [1..50])
+    @pirates.push(
+      new Pirate.Base(@, mapSize[0] / 2, mapSize[1] / 2)
+    )
 
     @bullets = []
 

@@ -34,7 +34,7 @@ window.Bullet = class extends FlyingObject
       @remove = true
     else if @source instanceof Ship
       for pirate in @controller.pirates
-        if Math.hypo(pirate.x - @x, pirate.y - @y) < 20
+        if Math.hypo(pirate.x - @x, pirate.y - @y) < pirate.hitDistance
           @controller.animator.bulletHit(@)
 
           pirate.getHit(@)
