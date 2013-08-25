@@ -14,6 +14,8 @@
     <li>Buy new ships for better performance and cargo capacity  </li>
   </ul>
 
+  <p>Your main goal is to <b>destroy the pirate base</b> in the middle of the map.</p>
+
   <% if @map.ship.fuel == 0: %>
     <p>This time you died because you <b>ran out of fuel</b>. Make sure to refuel every time you dock.</p>
   <% else: %>
