@@ -54,6 +54,8 @@ window.CityController = class extends BaseController
     @el.on('click', '.close', @.onCloseClick)
     @el.on('click', '.buy', @.onBuyClick)
     @el.on('click', '.sell', @.onSellClick)
+    @el.on('click', '.refuel', @.onRefuelClick)
+    @el.on('click', '.repair', @.onRepairClick)
 
     $(document).on('keydown', @.onKeyDown)
 
@@ -85,6 +87,22 @@ window.CityController = class extends BaseController
     type = $(e.currentTarget).data('type')
 
     result = @ship.sellCargo(type, @city)
+
+    if result == true
+      @.render()
+    else
+      @.renderError(I18n.t("game.city.errors.#{ result }"))
+
+  onRefuelClick: (e)=>
+    result = @ship.refuel()
+
+    if result == true
+      @.render()
+    else
+      @.renderError(I18n.t("game.city.errors.#{ result }"))
+
+  onRepairClick: (e)=>
+    result = @ship.repair()
 
     if result == true
       @.render()

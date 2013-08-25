@@ -100,3 +100,25 @@ window.Ship = class extends FlyingObject
 
   healthPercent: ->
     @health / @.maxHealth
+
+  refuel: ->
+    price = (@.maxFuel - @fuel) * refuelCost
+
+    if @money < price
+      'not_enough_money'
+    else
+      @money -= price
+      @fuel = @.maxFuel
+
+      true
+
+  repair: ->
+    price = (@.maxHealth - @health) * repairCost
+
+    if @money < price
+      'not_enough_money'
+    else
+      @money -= price
+      @health = @.maxHealth
+
+      true

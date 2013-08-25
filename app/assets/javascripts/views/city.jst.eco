@@ -1,7 +1,7 @@
 <div class="content">
   Type: <%= @city.type %><br>
 
-  <table>
+  <table class="trading">
     <tr>
       <th>Item</th>
       <th>Price</th>
@@ -29,8 +29,20 @@
     <% end %>
   </table>
 
-  Your money: <%= @ship.money %>
-  Cargo: <%= @ship.totalCargo() %> of <%= @ship.maxCargo %>
+  <div class="ship_status">
+    Your money: <%= @ship.money %><br>
+    Cargo: <%= @ship.totalCargo() %> / <%= @ship.maxCargo %><br>
+    Fuel: <%= @ship.fuel %> / <%= @ship.maxFuel %><br>
+    Health: <%= @ship.health %> / <%= @ship.maxHealth %><br>
+
+    <% if @ship.fuel < @ship.maxFuel: %>
+      <button class="refuel ">Refuel</button>
+    <% end %>
+
+    <% if @ship.health < @ship.maxHealth: %>
+      <button class="repair">Repair</button>
+    <% end %>
+  </div>
 </div>
 
 <button class="close"></button>

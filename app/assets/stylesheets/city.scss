@@ -12,6 +12,12 @@
     top: 15px;
     left: 15px;
     width: 530px;
+
+    .ship_status {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
   }
 
   .close {

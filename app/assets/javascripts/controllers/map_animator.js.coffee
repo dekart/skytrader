@@ -189,7 +189,9 @@ window.MapAnimator = class extends Animator
     return if @controller.ship.docked
 
     for i in [0 .. @controller.ship.fuel - 1]
-      unless @fuel_progress.children[i]
+      if @fuel_progress.children[i]
+        @fuel_progress.children[i].scale = new PIXI.Point(1, 1)
+      else
         crystal = PIXI.Sprite.fromFrame('crystal.png')
         crystal.position.x = i * (crystal.width + 2)
         @fuel_progress.addChild(crystal)

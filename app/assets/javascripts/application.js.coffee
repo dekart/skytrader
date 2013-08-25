@@ -106,6 +106,9 @@ window.stockAmountRanges = {
   }
 }
 
+window.refuelCost = 5
+window.repairCost = 1
+
 Math.hypo = (a, b)->
   Math.sqrt(a * a + b * b)
 
