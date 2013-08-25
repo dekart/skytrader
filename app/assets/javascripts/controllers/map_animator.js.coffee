@@ -50,18 +50,24 @@ window.MapAnimator = class extends Animator
 
   addSprites: ->
     @background_sprite = PIXI.Sprite.fromImage('$assetPath(sky.jpg)')
+
     @background_layer.addChild(@background_sprite)
 
+    @interface_background = PIXI.Sprite.fromFrame('interface.png')
+    @interface_background.position = new PIXI.Point(canvasSize.width - 4, 5)
+    @interface_background.anchor.x = 1
+
     @health_progress = new PIXI.Graphics()
-    @health_progress.position = new PIXI.Point(canvasSize.width - 110, 10)
+    @health_progress.position = new PIXI.Point(canvasSize.width - 85, 10)
     @.updateHealthProgress()
 
     @fuel_progress = new PIXI.DisplayObjectContainer()
-    @fuel_progress.position = new PIXI.Point(canvasSize.width - 200, 10)
+    @fuel_progress.position = new PIXI.Point(canvasSize.width - 196, 14)
     @.updateFuelProgress()
 
     @cursor = PIXI.Sprite.fromFrame('cursor.png')
 
+    @interface_layer.addChild(@interface_background)
     @interface_layer.addChild(@health_progress)
     @interface_layer.addChild(@fuel_progress)
     @interface_layer.addChild(@cursor)
@@ -179,7 +185,7 @@ window.MapAnimator = class extends Animator
   updateHealthProgress: ->
     @health_progress.clear()
     @health_progress.beginFill(0xdd0000, 1)
-    @health_progress.drawRect(0, 0, 100 * @controller.ship.healthPercent(), 10)
+    @health_progress.drawRect(0, 0, 75 * @controller.ship.healthPercent(), 5)
     @health_progress.endFill()
 
   updateFuelProgress: ->
@@ -191,6 +197,7 @@ window.MapAnimator = class extends Animator
       else
         sprite = PIXI.Sprite.fromFrame('fuel.png')
         sprite.position.x = i * (sprite.width + 2)
+        sprite.anchor.y = 1
         @fuel_progress.addChild(sprite)
 
     while @fuel_progress.children.length > @controller.ship.fuel

@@ -19,7 +19,7 @@ window.Ship = class extends FlyingObject
     @.shoot() if @shooting
 
   updateFuel: ->
-    if Date.now() - @fuel_reduced_at > tenSeconds # 10 seconds!!!
+    if not @docked and Date.now() - @fuel_reduced_at > tenSeconds # 10 seconds!!!
       @fuel_reduced_at = Date.now()
       @fuel -= 1
 

@@ -11,4 +11,4 @@ window.Cloud = class
 
   updateState: ->
     @x -= 0.20 * @size
-    @x = mapSize[0] if @x < 0
+    @x = mapSize[0] + 150 if @x < -150
