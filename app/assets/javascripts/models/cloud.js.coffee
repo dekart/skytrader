@@ -2,8 +2,8 @@ window.Cloud = class
   @generate: (controller)->
     new @(
       controller
-      Math.random() * mapSize[0]
-      Math.random() * mapSize[1]
+      _.random(0, mapSize[0])
+      _.random(0, mapSize[1])
       Math.random()
     )
 

@@ -2,8 +2,8 @@ window.Station = class
   @generate: (controller)->
     new @(
       controller
-      Math.ceil(Math.random() * mapSize[0] / 250) * 250
-      Math.ceil(Math.random() * mapSize[1] / 250) * 250
+      _.random(1, mapSize[0] / 250 - 1) * 250 + _.random(-70, 70)
+      _.random(1, mapSize[1] / 250 - 1) * 250 + _.random(-70, 70)
     )
 
   constructor: (@controller, @x, @y)->

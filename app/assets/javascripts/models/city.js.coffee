@@ -2,8 +2,8 @@ window.City = class
   @generate: (controller)->
     new @(
       controller
-      Math.ceil(Math.random() * mapSize[0] / 200) * 200
-      Math.ceil(Math.random() * mapSize[1] / 200) * 200
+      _.random(1, mapSize[0] / 200 - 1) * 200 + _.random(-50, 50)
+      _.random(1, mapSize[1] / 200 - 1) * 200 + _.random(-50, 50)
       _.shuffle(['agro', 'industry', 'culture'])[0]
     )
 
