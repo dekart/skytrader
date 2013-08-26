@@ -45,7 +45,16 @@
   <div id="game_screen">
     <%= yield %>
 
+    <div id="voting">
+      This game was made by <a href="http://ludumdare.com/compo/" target="_blank">Aleksey Dmitriev</a>
+      for the <a href="http://ludumdare.com/compo/" target="_blank">Ludum Dare #27</a> contest.<br><br>
+
+      <a href="http://www.ludumdare.com/compo/ludum-dare-27/?action=preview&uid=14826" class="vote">Vote for it!</a>
+    </div>
+
     <div id="social_bar">
+      <h3>Do you like it? Let your friend know!</h3>
+
       <% if Settings.facebook_app_id %>
         <div class="facebook">
           <div class="fb-like" data-href="<%= root_url %>" data-width="200" data-colorscheme="dark" data-layout="button_count" data-show-faces="true" data-send="false"></div>

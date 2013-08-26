@@ -65,6 +65,43 @@ body{
   }
 }
 
+#voting {
+  margin-top: 30px;
+  padding: 30px 50px;
+  border-top: 1px solid #282828;
+  text-align: center;
+
+  a {
+    color: #5a9df6;
+
+    &.vote {
+      display: inline-block;
+
+      background-color: #5a9df6;
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+      text-shadow: 2px 2px 4px black;
+      padding: 10px 10px 10px 50px;
+      border-radius: 20px;
+      text-decoration: none;
+      border: 1px solid #b8d4f9;
+      position: relative;
+
+      &::before{
+        position: absolute;
+        display: block;
+        top: 15px;
+        left: 10px;
+        width: 30px;
+        height: 10px;
+        content: '';
+        background: image-url('art/health.png') repeat-x;
+      }
+    }
+  }
+}
+
 #instructions {
   margin-top: 20px;
   text-align: center;
