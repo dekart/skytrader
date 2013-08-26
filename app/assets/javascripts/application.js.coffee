@@ -9,9 +9,6 @@
 
 #= require i18n
 
-#= require soundmanager2
-#= require sounds
-
 #= require_tree ./lib
 #= require_tree ./helpers
 #= require_tree ./controllers
